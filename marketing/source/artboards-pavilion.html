@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet" /><style>
+  :root { --g900:#0d2a14; --g800:#123b1d; --g700:#1a5227; --g600:#2c9a46; --amber:#f2a91e; --clay:#c26a2d; --cream:#f3ead8; --mist:#cfe0d3; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:#333; display:flex; flex-direction:column; gap:40px; padding:40px; font-family:"Inter",sans-serif; }
+  .dark-bg {
+    background:
+      radial-gradient(1400px 900px at 88% -12%, rgba(44,154,70,0.55) 0%, transparent 55%),
+      radial-gradient(1000px 700px at -10% 110%, rgba(242,169,30,0.16) 0%, transparent 55%),
+      linear-gradient(158deg, var(--g700) 0%, var(--g800) 48%, var(--g900) 100%);
+  }
+  .rows::before { content:""; position:absolute; inset:0;
+    background:repeating-linear-gradient(115deg, rgba(255,255,255,0.045) 0px, rgba(255,255,255,0.045) 1.5px, transparent 1.5px, transparent 90px); pointer-events:none; }
+
+  .wordmark { font-family:"Archivo"; font-weight:800; letter-spacing:0.01em; }
+  .wordmark .thin { font-weight:600; }
+  .tagline { font-family:"Inter"; font-weight:600; letter-spacing:0.3em; text-transform:uppercase; }
+
+  /* ---------- BRAND SHEET (1350×1900, light) ---------- */
+  #sheet { position:relative; width:1350px; height:1900px; background:#faf7f0; color:#16211a; flex:none; overflow:hidden; }
+  #sheet .head { background:var(--g800); color:#fff; padding:44px 70px; display:flex; align-items:center; justify-content:space-between; }
+  #sheet .head h1 { font-family:"Archivo"; font-weight:800; font-size:40px; text-transform:uppercase; }
+  #sheet .head h1 span { color:var(--amber); }
+  #sheet .head p { font-size:15px; color:var(--mist); font-weight:600; letter-spacing:0.22em; text-transform:uppercase; margin-top:6px; }
+  #sheet .head .ver { font-size:14px; color:var(--mist); font-weight:600; letter-spacing:0.12em; text-align:right; line-height:1.7; text-transform:uppercase; }
+  #sheet .body { padding:52px 70px; display:flex; flex-direction:column; gap:48px; }
+  #sheet h2 { font-family:"Archivo"; font-weight:800; font-size:19px; letter-spacing:0.2em; text-transform:uppercase; color:var(--g700); border-bottom:3px solid var(--amber); display:inline-block; padding-bottom:8px; margin-bottom:24px; }
+  #sheet .marks { display:flex; gap:40px; align-items:center; }
+  #sheet .markbox { flex:none; width:300px; height:300px; border-radius:20px; display:flex; align-items:center; justify-content:center; }
+  #sheet .markbox.dark { background:var(--g800); }
+  #sheet .markbox.light { background:#fff; border:2px solid #e4ddcd; }
+  #sheet .marknote { font-size:17px; color:#4a5a4f; line-height:1.65; max-width:640px; }
+  #sheet .marknote b { color:var(--g800); }
+  #sheet .lockups { display:flex; flex-direction:column; gap:26px; }
+  #sheet .lockrow { display:flex; align-items:center; gap:26px; background:var(--g800); border-radius:16px; padding:30px 40px; color:#fff; width:fit-content; }
+  #sheet .lockrow.on-light { background:#fff; border:2px solid #e4ddcd; color:var(--g800); }
+  #sheet .lockrow .wordmark { font-size:44px; }
+  #sheet .lockrow .wordmark span { color:var(--amber); }
+  #sheet .lockrow .tagline { font-size:13px; margin-top:6px; color:var(--mist); }
+  #sheet .lockrow.on-light .tagline { color:#7a8a7f; }
+  #sheet .swatches { display:grid; grid-template-columns:repeat(7,1fr); gap:18px; }
+  #sheet .swatch { border-radius:14px; overflow:hidden; border:2px solid #e4ddcd; }
+  #sheet .swatch .chip { height:110px; }
+  #sheet .swatch .label { background:#fff; padding:12px 14px; }
+  #sheet .swatch .label b { display:block; font-family:"Archivo"; font-weight:800; font-size:14.5px; text-transform:uppercase; }
+  #sheet .swatch .label span { font-size:13.5px; color:#7a8a7f; font-weight:600; }
+  #sheet .typerow { display:flex; gap:44px; }
+  #sheet .typecard { flex:1; background:#fff; border:2px solid #e4ddcd; border-radius:16px; padding:30px 34px; }
+  #sheet .typecard .big { font-size:52px; line-height:1.1; }
+  #sheet .typecard .arch { font-family:"Archivo"; font-weight:800; text-transform:uppercase; }
+  #sheet .typecard .inter { font-family:"Inter"; font-weight:400; }
+  #sheet .typecard p { margin-top:14px; font-size:15px; color:#7a8a7f; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; }
+  #sheet .cats { display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px; }
+  #sheet .cat { border-radius:14px; padding:26px 28px; color:#fff; }
+  #sheet .cat h3 { font-family:"Archivo"; font-weight:800; font-size:23px; text-transform:uppercase; }
+  #sheet .cat p { font-size:15px; margin-top:8px; opacity:0.92; line-height:1.5; }
+  #sheet .cat.c1 { background:var(--amber); color:var(--g900); }
+  #sheet .cat.c2 { background:var(--g600); }
+  #sheet .cat.c3 { background:var(--clay); }
+  #sheet .rules { display:grid; grid-template-columns:1fr 1fr; gap:14px 40px; }
+  #sheet .rule { display:flex; gap:14px; font-size:16.5px; color:#4a5a4f; line-height:1.5; }
+  #sheet .rule::before { content:"✓"; color:var(--g600); font-weight:800; }
+
+  /* ---------- CATEGORY BADGES STRIP (1500×500, dark) ---------- */
+  #badges { position:relative; width:1500px; height:500px; flex:none; overflow:hidden; color:#fff; padding:56px 70px; display:flex; flex-direction:column; }
+  #badges .t { font-family:"Archivo"; font-weight:800; font-size:34px; text-transform:uppercase; }
+  #badges .t span { color:var(--amber); }
+  #badges .row { display:flex; gap:28px; margin-top:44px; }
+  .badge { border-radius:16px; padding:28px 34px; width:330px; }
+  .badge .bt { font-family:"Archivo"; font-weight:800; font-size:26px; text-transform:uppercase; line-height:1.15; }
+  .badge .bs { font-size:14.5px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; margin-top:10px; opacity:0.85; }
+  .badge.b1 { background:var(--amber); color:var(--g900); }
+  .badge.b2 { background:var(--g600); color:#fff; }
+  .badge.b3 { background:var(--clay); color:#fff; }
+  .badge.b4 { background:#fff; color:var(--g800); }
+
+  /* ---------- ANNOUNCEMENT SQUARE (1080×1080, dark) ---------- */
+  #announce { position:relative; width:1080px; height:1080px; flex:none; overflow:hidden; color:#fff; }
+  #announce .ribbon { position:absolute; left:0; right:0; bottom:0; background:var(--amber); color:var(--g900);
+    font-family:"Archivo"; font-weight:800; text-transform:uppercase; white-space:nowrap; overflow:hidden; font-size:21px; padding:13px 0; letter-spacing:0.12em; }
+  #announce .inner { position:absolute; inset:0 0 47px 0; padding:64px 72px 58px; display:flex; flex-direction:column; }
+  #announce .top { display:flex; align-items:center; gap:24px; }
+  #announce .wordmark { font-size:44px; }
+  #announce .wordmark span { color:var(--amber); }
+  #announce .tagline { font-size:14px; color:var(--mist); margin-top:6px; }
+  #announce .intro { font-weight:600; font-size:22px; letter-spacing:0.28em; text-transform:uppercase; color:var(--amber); margin-top:64px; }
+  #announce .headline { font-family:"Archivo"; font-weight:800; font-size:88px; text-transform:uppercase; line-height:1.0; margin-top:16px; }
+  #announce .headline span { color:var(--amber); }
+  #announce .kicker { font-size:29px; color:var(--mist); line-height:1.5; margin-top:34px; max-width:850px; }
+  #announce .kicker b { color:var(--amber); font-weight:600; }
+  #announce .minibadges { display:flex; gap:16px; margin-top:44px; flex-wrap:wrap; }
+  #announce .mb { font-family:"Archivo"; font-weight:800; font-size:21px; text-transform:uppercase; padding:14px 24px; border-radius:10px; }
+  #announce .mb.b1 { background:var(--amber); color:var(--g900); }
+  #announce .mb.b2 { background:var(--g600); }
+  #announce .mb.b3 { background:var(--clay); }
+  #announce .footline { margin-top:auto; display:flex; align-items:center; justify-content:space-between; }
+  #announce .cta { background:var(--amber); color:var(--g900); font-family:"Archivo"; font-weight:800; text-transform:uppercase; border-radius:999px; font-size:27px; padding:22px 42px; }
+  #announce .url { font-weight:600; color:var(--cream); font-size:20px; }
+
+  /* ---------- SIGNAGE BANNER (2000×600, dark) ---------- */
+  #signage { position:relative; width:2000px; height:600px; flex:none; overflow:hidden; color:#fff; display:flex; align-items:center; padding:0 90px; gap:70px; }
+  #signage::after { content:""; position:absolute; left:0; right:0; bottom:0; height:14px; background:linear-gradient(90deg, var(--amber), var(--g600)); }
+  #signage .txt .wordmark { font-size:96px; }
+  #signage .txt .wordmark span { color:var(--amber); }
+  #signage .txt .tagline { font-size:24px; color:var(--mist); margin-top:18px; letter-spacing:0.32em; }
+  #signage .divider { width:3px; align-self:stretch; margin:80px 0; background:rgba(243,234,216,0.35); }
+  #signage .side { font-family:"Archivo"; font-weight:800; text-transform:uppercase; text-align:right; margin-left:auto; }
+  #signage .side .d1 { font-size:56px; color:var(--amber); line-height:1.15; }
+  #signage .side .d2 { font-family:"Inter"; font-weight:600; font-size:22px; letter-spacing:0.2em; color:var(--mist); margin-top:14px; line-height:1.6; }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute"><defs>
+<g id="pav">
+  <line x1="120" y1="420" x2="392" y2="420" stroke="#1a5227" stroke-width="10" stroke-linecap="round"/>
+  <line x1="152" y1="452" x2="360" y2="452" stroke="#1a5227" stroke-width="10" stroke-linecap="round"/>
+  <polyline points="72,226 256,88 440,226" fill="none" stroke="#f2a91e" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="134,244 256,152 378,244" fill="none" stroke="#f3ead8" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
+  <circle cx="256" cy="78" r="16" fill="#f2a91e"/>
+  <g transform="translate(156,196) scale(2.0)">
+    <line x1="50" y1="14" x2="50" y2="96" stroke="#f2a91e" stroke-width="5" stroke-linecap="round"/>
+    <ellipse cx="36" cy="30" rx="8" ry="15" fill="#f2a91e" transform="rotate(-32 36 30)"/>
+    <ellipse cx="64" cy="30" rx="8" ry="15" fill="#f2a91e" transform="rotate(32 64 30)"/>
+    <ellipse cx="33" cy="52" rx="8" ry="15" fill="#f2a91e" transform="rotate(-32 33 52)"/>
+    <ellipse cx="67" cy="52" rx="8" ry="15" fill="#f2a91e" transform="rotate(32 67 52)"/>
+    <ellipse cx="35" cy="74" rx="8" ry="15" fill="#cfe0d3" transform="rotate(-32 35 74)"/>
+    <ellipse cx="65" cy="74" rx="8" ry="15" fill="#cfe0d3" transform="rotate(32 65 74)"/>
+    <ellipse cx="50" cy="16" rx="8" ry="15" fill="#f2a91e"/>
+  </g>
+</g>
+<g id="pav-light">
+  <line x1="120" y1="420" x2="392" y2="420" stroke="#cfe0d3" stroke-width="10" stroke-linecap="round"/>
+  <line x1="152" y1="452" x2="360" y2="452" stroke="#cfe0d3" stroke-width="10" stroke-linecap="round"/>
+  <polyline points="72,226 256,88 440,226" fill="none" stroke="#123b1d" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="134,244 256,152 378,244" fill="none" stroke="#f2a91e" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="256" cy="78" r="16" fill="#f2a91e"/>
+  <g transform="translate(156,196) scale(2.0)">
+    <line x1="50" y1="14" x2="50" y2="96" stroke="#1a5227" stroke-width="5" stroke-linecap="round"/>
+    <ellipse cx="36" cy="30" rx="8" ry="15" fill="#f2a91e" transform="rotate(-32 36 30)"/>
+    <ellipse cx="64" cy="30" rx="8" ry="15" fill="#f2a91e" transform="rotate(32 64 30)"/>
+    <ellipse cx="33" cy="52" rx="8" ry="15" fill="#f2a91e" transform="rotate(-32 33 52)"/>
+    <ellipse cx="67" cy="52" rx="8" ry="15" fill="#f2a91e" transform="rotate(32 67 52)"/>
+    <ellipse cx="35" cy="74" rx="8" ry="15" fill="#2c9a46" transform="rotate(-32 35 74)"/>
+    <ellipse cx="65" cy="74" rx="8" ry="15" fill="#2c9a46" transform="rotate(32 65 74)"/>
+    <ellipse cx="50" cy="16" rx="8" ry="15" fill="#f2a91e"/>
+  </g>
+</g>
+</defs></svg>
+
+<!-- ============ BRAND SHEET ============ -->
+<div id="sheet">
+  <div class="head">
+    <div>
+      <h1>AGIX <span>Pavilions</span> — Brand Guide</h1>
+      <p>Sub-brand of the AGIX Agribusiness &amp; Agritech Expo 2027</p>
+    </div>
+    <div class="ver">Version 1.0<br/>AGIX Africa • 2026</div>
+  </div>
+  <div class="body">
+
+    <div>
+      <h2>01 — The Mark</h2>
+      <div class="marks">
+        <div class="markbox dark"><svg width="240" height="240" viewBox="0 0 512 512"><use href="#pav"/></svg></div>
+        <div class="markbox light"><svg width="240" height="240" viewBox="0 0 512 512"><use href="#pav-light"/></svg></div>
+        <p class="marknote">
+          <b>The canopy and the wheat.</b> An amber canopy — the pavilion — shelters the AGIX wheat,
+          with field rows beneath: <b>a nation's agrifood story, hosted under one roof</b>.
+          The mark inherits the expo's wheat so every pavilion is unmistakably part of AGIX.
+          Use the dark tile on screens and event signage; the light variant on print and white surfaces.
+          Clear space: half the canopy's width on all sides. Never rotate, recolour or outline the mark.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <h2>02 — Lockups</h2>
+      <div class="lockups">
+        <div class="lockrow">
+          <svg width="96" height="96" viewBox="0 0 512 512"><use href="#pav"/></svg>
+          <div>
+            <div class="wordmark">AGIX <span>PAVILIONS</span></div>
+            <div class="tagline">National &amp; Trade Pavilions • Expo 2027</div>
+          </div>
+        </div>
+        <div class="lockrow on-light">
+          <svg width="96" height="96" viewBox="0 0 512 512"><use href="#pav-light"/></svg>
+          <div>
+            <div class="wordmark">AGIX <span style="color:#c26a2d">PAVILIONS</span></div>
+            <div class="tagline">National &amp; Trade Pavilions • Expo 2027</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h2>03 — Colour</h2>
+      <div class="swatches">
+        <div class="swatch"><div class="chip" style="background:#0d2a14"></div><div class="label"><b>Night Forest</b><span>#0D2A14</span></div></div>
+        <div class="swatch"><div class="chip" style="background:#123b1d"></div><div class="label"><b>Deep Forest</b><span>#123B1D</span></div></div>
+        <div class="swatch"><div class="chip" style="background:#1a5227"></div><div class="label"><b>Expo Green</b><span>#1A5227</span></div></div>
+        <div class="swatch"><div class="chip" style="background:#2c9a46"></div><div class="label"><b>Growth Green</b><span>#2C9A46</span></div></div>
+        <div class="swatch"><div class="chip" style="background:#f2a91e"></div><div class="label"><b>Harvest Amber</b><span>#F2A91E</span></div></div>
+        <div class="swatch"><div class="chip" style="background:#c26a2d"></div><div class="label"><b>Pavilion Clay</b><span>#C26A2D</span></div></div>
+        <div class="swatch"><div class="chip" style="background:#f3ead8"></div><div class="label"><b>Harvest Cream</b><span>#F3EAD8</span></div></div>
+      </div>
+      <p style="margin-top:18px; font-size:16px; color:#7a8a7f;">The expo palette carries over unchanged; <b style="color:#c26a2d">Pavilion Clay</b> is the sub-brand's own accent — African earth, craft and market — used for pavilion categories and wayfinding.</p>
+    </div>
+
+    <div>
+      <h2>04 — Typography</h2>
+      <div class="typerow">
+        <div class="typecard">
+          <div class="big arch">Archivo 800</div>
+          <p>Headlines • Wordmark • Signage — always uppercase</p>
+        </div>
+        <div class="typecard">
+          <div class="big inter">Inter 400 / 600</div>
+          <p>Body copy • Labels • Captions — sentence case</p>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h2>05 — Pavilion Categories</h2>
+      <div class="cats">
+        <div class="cat c1"><h3>Country Pavilions</h3><p>National missions and trade delegations — Harvest Amber. Flagship 36 sqm+ hosted spaces.</p></div>
+        <div class="cat c2"><h3>State Pavilions</h3><p>Nigerian state governments and regional clusters — Growth Green.</p></div>
+        <div class="cat c3"><h3>Innovation Pavilions</h3><p>Startups, research and agritech showcases — Pavilion Clay.</p></div>
+      </div>
+    </div>
+
+    <div>
+      <h2>06 — Usage Rules</h2>
+      <div class="rules">
+        <div class="rule">Pair the mark with the endorsement ribbon on all public materials.</div>
+        <div class="rule">Category colour appears in the badge and accents only — grounds stay green.</div>
+        <div class="rule">Partner-country flags and names sit beside, never inside, the mark.</div>
+        <div class="rule">Minimum mark size: 32 px digital / 12 mm print.</div>
+        <div class="rule">Photography: real farms, markets and machinery — no generic stock gloss.</div>
+        <div class="rule">The wheat is shared with the master brand — never redraw or restyle it.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ CATEGORY BADGES ============ -->
+<div id="badges" class="dark-bg rows">
+  <div class="t">AGIX <span>PAVILIONS</span> — CATEGORY BADGES</div>
+  <div class="row">
+    <div class="badge b1"><div class="bt">Country Pavilion</div><div class="bs">National missions • 36 sqm+</div></div>
+    <div class="badge b2"><div class="bt">State Pavilion</div><div class="bs">Nigerian states &amp; regions</div></div>
+    <div class="badge b3"><div class="bt">Innovation Pavilion</div><div class="bs">Startups &amp; agritech</div></div>
+    <div class="badge b4"><div class="bt">Partner Pavilion</div><div class="bs">Institutions &amp; DFIs</div></div>
+  </div>
+</div>
+
+<!-- ============ ANNOUNCEMENT ============ -->
+<div id="announce" class="dark-bg rows">
+  <div class="ribbon">&nbsp;• AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE, ENUGU • HOSTED PAVILIONS FROM 36 SQM • AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL</div>
+  <div class="inner">
+    <div class="top">
+      <svg width="92" height="92" viewBox="0 0 512 512"><use href="#pav"/></svg>
+      <div>
+        <div class="wordmark">AGIX <span>PAVILIONS</span></div>
+        <div class="tagline">National &amp; Trade Pavilions • Expo 2027</div>
+      </div>
+    </div>
+    <div class="intro">Introducing</div>
+    <div class="headline">Your Nation's Story.<br/><span>One Roof.</span></div>
+    <div class="kicker">Hosted pavilions for <b>country missions, state governments, trade groups and innovation clusters</b> — custom-built spaces from 36 sqm with dedicated branding, hosted-exhibitor support and media exposure.</div>
+    <div class="minibadges">
+      <div class="mb b1">Country</div>
+      <div class="mb b2">State</div>
+      <div class="mb b3">Innovation</div>
+    </div>
+    <div class="footline">
+      <div class="cta">Reserve a Pavilion →</div>
+      <div class="url">hello@agixafrica.com</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SIGNAGE BANNER ============ -->
+<div id="signage" class="dark-bg rows">
+  <svg width="300" height="300" viewBox="0 0 512 512" style="flex:none"><use href="#pav"/></svg>
+  <div class="txt">
+    <div class="wordmark">AGIX <span>PAVILIONS</span></div>
+    <div class="tagline">NATIONAL &amp; TRADE PAVILIONS</div>
+  </div>
+  <div class="divider"></div>
+  <div class="side">
+    <div class="d1">9–10 APRIL 2027</div>
+    <div class="d2">AMADEO EVENT CENTRE<br/>ENUGU • NIGERIA</div>
+  </div>
+</div>
+
+</body>
+</html>
