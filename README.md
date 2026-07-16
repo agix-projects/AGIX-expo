@@ -1,6 +1,6 @@
-# AGIX Agribusiness & Agritech Expo 2027 — Landing Page
+# AGIX Agribusiness & Agritech Expo 2027 — Event Website
 
-A professional, responsive landing page with registration data collection for the
+A professional, responsive event website with registration data collection for the
 **AGIX Agribusiness & Agritech Expo 2027** — 9–10 April 2027, Amadeo Event Centre,
 Ebeano Tunnel Rd, Achara – Enugu, Nigeria. Organised by Africa Growth Industries
 Exchange (AGIX Africa) Ltd.
@@ -9,10 +9,18 @@ Exchange (AGIX Africa) Ltd.
 
 ```
 index.html                 Landing page (hero, why attend, audience, partners, testimonials, venue, FAQ, registration form)
+about.html                 About the Expo — why it matters, figures, coordinating partners, sectors, venue
+exhibitors.html            Why Exhibit — audience, booth packages (Standard/Premium/Custom), add-ons, exhibitor services
+sponsors.html              Why Sponsor — ROI, sponsorship tiers & partner categories, sponsor benefits
+travel.html                Travel, Logistics & Visa Assistance — visas, flights, ground transport, exhibitor logistics
 css/styles.css             All styling (responsive, mobile-first breakpoints)
-js/main.js                 Countdown, mobile nav, form validation & submission
+js/main.js                 Countdown, mobile nav, form validation & submission, ?category= pre-selection
 admin/registrations.html   Local admin view — browse/export registrations as CSV or JSON
 ```
+
+All registration CTAs across the site feed the form on `index.html#register`. Links
+like `index.html?category=Exhibitor#register` pre-select the matching category, so
+"Book a Stand" and "Become a Sponsor" enquiries are captured with the right label.
 
 No build step, no dependencies — plain HTML/CSS/JS. Host it anywhere
 (GitHub Pages, Netlify, Vercel, cPanel, S3…).

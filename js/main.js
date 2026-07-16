@@ -70,17 +70,24 @@
   tickCountdown();
   setInterval(tickCountdown, 1000);
 
-  /* ---------- "Book a Stand" pre-selects the Exhibitor category ---------- */
+  /* ---------- Category pre-selection ---------- */
+  function selectCategory(wanted) {
+    var select = document.getElementById("category");
+    if (!select || !wanted) return;
+    Array.prototype.forEach.call(select.options, function (opt) {
+      if (opt.text.indexOf(wanted) !== -1) select.value = opt.value || opt.text;
+    });
+  }
+
+  // Same-page links: <a data-category="Exhibitor">
   document.querySelectorAll("[data-category]").forEach(function (link) {
     link.addEventListener("click", function () {
-      var select = document.getElementById("category");
-      if (!select) return;
-      var wanted = link.getAttribute("data-category");
-      Array.prototype.forEach.call(select.options, function (opt) {
-        if (opt.text.indexOf(wanted) !== -1) select.value = opt.value || opt.text;
-      });
+      selectCategory(link.getAttribute("data-category"));
     });
   });
+
+  // Cross-page links: index.html?category=Exhibitor#register
+  selectCategory(new URLSearchParams(window.location.search).get("category"));
 
   /* ---------- Registration form ---------- */
   var form = document.getElementById("registration-form");
