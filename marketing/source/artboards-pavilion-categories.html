@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet" /><style>
+  :root { --g900:#0d2a14; --g800:#123b1d; --g700:#1a5227; --g600:#2c9a46; --amber:#f2a91e; --clay:#c26a2d; --cream:#f3ead8; --mist:#cfe0d3; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:#333; display:flex; flex-direction:column; gap:40px; padding:40px; font-family:"Inter",sans-serif; }
+  .board { position:relative; overflow:hidden; color:#fff; flex:none; width:1080px; height:1080px;
+    background:
+      radial-gradient(1400px 900px at 88% -12%, rgba(44,154,70,0.55) 0%, transparent 55%),
+      radial-gradient(1000px 700px at -10% 110%, rgba(242,169,30,0.16) 0%, transparent 55%),
+      linear-gradient(158deg, var(--g700) 0%, var(--g800) 48%, var(--g900) 100%); }
+  .board::before { content:""; position:absolute; inset:0;
+    background:repeating-linear-gradient(115deg, rgba(255,255,255,0.045) 0px, rgba(255,255,255,0.045) 1.5px, transparent 1.5px, transparent 90px); pointer-events:none; }
+  .ribbon { position:absolute; left:0; right:0; bottom:0; background:var(--amber); color:var(--g900);
+    font-family:"Archivo"; font-weight:800; text-transform:uppercase; white-space:nowrap; overflow:hidden; z-index:3;
+    font-size:21px; padding:13px 0; letter-spacing:0.12em; }
+  .inner { position:absolute; inset:0 0 47px 0; padding:60px 72px 56px; display:flex; flex-direction:column; }
+  .top { display:flex; align-items:center; gap:22px; }
+  .wordmark { font-family:"Archivo"; font-weight:800; font-size:40px; letter-spacing:0.01em; }
+  .wordmark span { color:var(--amber); }
+  .tagline { font-weight:600; font-size:13px; letter-spacing:0.3em; text-transform:uppercase; color:var(--mist); margin-top:5px; }
+  .catbadge { display:inline-flex; margin-top:56px; font-family:"Archivo"; font-weight:800; font-size:26px;
+    text-transform:uppercase; letter-spacing:0.08em; padding:16px 30px; border-radius:12px; width:fit-content; }
+  .headline { font-family:"Archivo"; font-weight:800; text-transform:uppercase; line-height:1.0; margin-top:26px; }
+  .headline .accent {}
+  .hl-lg { font-size:92px; } .hl-md { font-size:78px; }
+  .kicker { font-weight:400; color:var(--mist); font-size:29px; line-height:1.5; margin-top:34px; max-width:880px; }
+  .kicker b { font-weight:600; }
+  .list { display:grid; grid-template-columns:1fr; gap:24px; margin-top:44px; }
+  .item { display:flex; align-items:flex-start; gap:16px; font-weight:600; font-size:26px; color:var(--cream); line-height:1.35; }
+  .item::before { content:"✓"; font-weight:800; font-size:28px; flex:none; line-height:1.2; }
+  .footline { margin-top:auto; display:flex; align-items:center; justify-content:space-between; }
+  .cta { background:var(--amber); color:var(--g900); font-family:"Archivo"; font-weight:800; text-transform:uppercase;
+    border-radius:999px; font-size:26px; padding:21px 40px; }
+  .url { font-weight:600; color:var(--cream); font-size:20px; }
+
+  /* category theming */
+  .cat-state .catbadge { background:var(--g600); color:#fff; }
+  .cat-state .headline .accent, .cat-state .kicker b, .cat-state .item::before { color:var(--g600); }
+  .cat-state .item::before { color:#4fca6c; }
+  .cat-state .headline .accent { color:#4fca6c; }
+  .cat-state .kicker b { color:#4fca6c; }
+  .cat-regional .catbadge { background:var(--amber); color:var(--g900); }
+  .cat-regional .headline .accent, .cat-regional .kicker b, .cat-regional .item::before { color:var(--amber); }
+  .cat-chambers .catbadge { background:var(--clay); color:#fff; }
+  .cat-chambers .headline .accent, .cat-chambers .kicker b, .cat-chambers .item::before { color:#e89050; }
+  .cat-dfi .catbadge { background:var(--cream); color:var(--g900); }
+  .cat-dfi .headline .accent, .cat-dfi .kicker b, .cat-dfi .item::before { color:var(--cream); }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute"><defs>
+<g id="pav">
+  <line x1="120" y1="420" x2="392" y2="420" stroke="#1a5227" stroke-width="10" stroke-linecap="round"/>
+  <line x1="152" y1="452" x2="360" y2="452" stroke="#1a5227" stroke-width="10" stroke-linecap="round"/>
+  <polyline points="72,226 256,88 440,226" fill="none" stroke="#f2a91e" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="134,244 256,152 378,244" fill="none" stroke="#f3ead8" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
+  <circle cx="256" cy="78" r="16" fill="#f2a91e"/>
+  <g transform="translate(156,196) scale(2.0)">
+    <line x1="50" y1="14" x2="50" y2="96" stroke="#f2a91e" stroke-width="5" stroke-linecap="round"/>
+    <ellipse cx="36" cy="30" rx="8" ry="15" fill="#f2a91e" transform="rotate(-32 36 30)"/>
+    <ellipse cx="64" cy="30" rx="8" ry="15" fill="#f2a91e" transform="rotate(32 64 30)"/>
+    <ellipse cx="33" cy="52" rx="8" ry="15" fill="#f2a91e" transform="rotate(-32 33 52)"/>
+    <ellipse cx="67" cy="52" rx="8" ry="15" fill="#f2a91e" transform="rotate(32 67 52)"/>
+    <ellipse cx="35" cy="74" rx="8" ry="15" fill="#cfe0d3" transform="rotate(-32 35 74)"/>
+    <ellipse cx="65" cy="74" rx="8" ry="15" fill="#cfe0d3" transform="rotate(32 65 74)"/>
+    <ellipse cx="50" cy="16" rx="8" ry="15" fill="#f2a91e"/>
+  </g>
+</g>
+</defs></svg>
+
+<!-- ============ STATE PAVILION ============ -->
+<div class="board cat-state" id="state-01">
+  <div class="ribbon">&nbsp;• AGIX PAVILIONS • AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE, ENUGU • HOSTED PAVILIONS FROM 36 SQM • AGIX PAVILIONS • EXPO 2027</div>
+  <div class="inner">
+    <div class="top"><svg width="84" height="84" viewBox="0 0 512 512"><use href="#pav"/></svg>
+      <div><div class="wordmark">AGIX <span>PAVILIONS</span></div><div class="tagline">National &amp; Trade Pavilions • Expo 2027</div></div>
+    </div>
+    <div class="catbadge">State Pavilion</div>
+    <div class="headline hl-lg">Put Your State<br/>on the <span class="accent">Map</span></div>
+    <div class="kicker">A hosted pavilion for <b>Nigerian state governments</b> — showcase your farmers, commodities and investment-ready projects to 3,000+ participants from 30+ countries.</div>
+    <div class="footline"><div class="cta">Reserve a State Pavilion →</div><div class="url">hello@agixafrica.com</div></div>
+  </div>
+</div>
+
+<div class="board cat-state" id="state-02">
+  <div class="ribbon">&nbsp;• AGIX PAVILIONS • AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE, ENUGU • HOSTED PAVILIONS FROM 36 SQM • AGIX PAVILIONS • EXPO 2027</div>
+  <div class="inner">
+    <div class="top"><svg width="84" height="84" viewBox="0 0 512 512"><use href="#pav"/></svg>
+      <div><div class="wordmark">AGIX <span>PAVILIONS</span></div><div class="tagline">National &amp; Trade Pavilions • Expo 2027</div></div>
+    </div>
+    <div class="catbadge">State Pavilion</div>
+    <div class="headline hl-md">What Your<br/>State <span class="accent">Gains</span></div>
+    <div class="list">
+      <div class="item">Showcase state commodities &amp; export-ready produce</div>
+      <div class="item">Attract investors to state agri-projects</div>
+      <div class="item">Host your SMEs &amp; cooperatives under one roof</div>
+      <div class="item">Engage federal ministries, DFIs &amp; development partners</div>
+      <div class="item">Dedicated branding, media coverage &amp; delegation support</div>
+    </div>
+    <div class="footline"><div class="cta">Reserve a State Pavilion →</div><div class="url">hello@agixafrica.com</div></div>
+  </div>
+</div>
+
+<!-- ============ REGIONAL PAVILION ============ -->
+<div class="board cat-regional" id="regional-01">
+  <div class="ribbon">&nbsp;• AGIX PAVILIONS • AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE, ENUGU • HOSTED PAVILIONS FROM 36 SQM • AGIX PAVILIONS • EXPO 2027</div>
+  <div class="inner">
+    <div class="top"><svg width="84" height="84" viewBox="0 0 512 512"><use href="#pav"/></svg>
+      <div><div class="wordmark">AGIX <span>PAVILIONS</span></div><div class="tagline">National &amp; Trade Pavilions • Expo 2027</div></div>
+    </div>
+    <div class="catbadge">Regional Pavilion</div>
+    <div class="headline hl-lg">One Region.<br/><span class="accent">One Roof.</span></div>
+    <div class="kicker">For <b>regional blocs, trade corridors and economic communities</b> — present your shared value chains with joint branding and a bigger presence at shared cost.</div>
+    <div class="footline"><div class="cta">Reserve a Regional Pavilion →</div><div class="url">hello@agixafrica.com</div></div>
+  </div>
+</div>
+
+<div class="board cat-regional" id="regional-02">
+  <div class="ribbon">&nbsp;• AGIX PAVILIONS • AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE, ENUGU • HOSTED PAVILIONS FROM 36 SQM • AGIX PAVILIONS • EXPO 2027</div>
+  <div class="inner">
+    <div class="top"><svg width="84" height="84" viewBox="0 0 512 512"><use href="#pav"/></svg>
+      <div><div class="wordmark">AGIX <span>PAVILIONS</span></div><div class="tagline">National &amp; Trade Pavilions • Expo 2027</div></div>
+    </div>
+    <div class="catbadge">Regional Pavilion</div>
+    <div class="headline hl-md">Stronger<br/><span class="accent">Together</span></div>
+    <div class="list">
+      <div class="item">Present regional value chains &amp; trade corridors</div>
+      <div class="item">Joint branding for member states &amp; countries</div>
+      <div class="item">B2B matchmaking with buyers and investors</div>
+      <div class="item">A platform for regional policy dialogue</div>
+      <div class="item">Shared cost, bigger presence — custom layouts from 36 sqm</div>
+    </div>
+    <div class="footline"><div class="cta">Reserve a Regional Pavilion →</div><div class="url">hello@agixafrica.com</div></div>
+  </div>
+</div>
+
+<!-- ============ CHAMBERS PAVILION ============ -->
+<div class="board cat-chambers" id="chambers-01">
+  <div class="ribbon">&nbsp;• AGIX PAVILIONS • AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE, ENUGU • HOSTED PAVILIONS FROM 36 SQM • AGIX PAVILIONS • EXPO 2027</div>
+  <div class="inner">
+    <div class="top"><svg width="84" height="84" viewBox="0 0 512 512"><use href="#pav"/></svg>
+      <div><div class="wordmark">AGIX <span>PAVILIONS</span></div><div class="tagline">National &amp; Trade Pavilions • Expo 2027</div></div>
+    </div>
+    <div class="catbadge">Chambers Pavilion</div>
+    <div class="headline hl-lg">Bring Your Members<br/>to <span class="accent">Market</span></div>
+    <div class="kicker">For <b>chambers of commerce and industry &amp; agriculture associations</b> — host your member businesses in a chamber-branded pavilion and open doors they can't open alone.</div>
+    <div class="footline"><div class="cta">Reserve a Chambers Pavilion →</div><div class="url">hello@agixafrica.com</div></div>
+  </div>
+</div>
+
+<div class="board cat-chambers" id="chambers-02">
+  <div class="ribbon">&nbsp;• AGIX PAVILIONS • AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE, ENUGU • HOSTED PAVILIONS FROM 36 SQM • AGIX PAVILIONS • EXPO 2027</div>
+  <div class="inner">
+    <div class="top"><svg width="84" height="84" viewBox="0 0 512 512"><use href="#pav"/></svg>
+      <div><div class="wordmark">AGIX <span>PAVILIONS</span></div><div class="tagline">National &amp; Trade Pavilions • Expo 2027</div></div>
+    </div>
+    <div class="catbadge">Chambers Pavilion</div>
+    <div class="headline hl-md">What Your<br/>Chamber <span class="accent">Delivers</span></div>
+    <div class="list">
+      <div class="item">Host member SMEs at group rates under one fascia</div>
+      <div class="item">Chamber-branded pavilion &amp; wayfinding</div>
+      <div class="item">Curated introductions for every member business</div>
+      <div class="item">Networking with government, finance &amp; buyers</div>
+      <div class="item">End-to-end delegation &amp; logistics support</div>
+    </div>
+    <div class="footline"><div class="cta">Reserve a Chambers Pavilion →</div><div class="url">hello@agixafrica.com</div></div>
+  </div>
+</div>
+
+<!-- ============ DFIs PAVILION ============ -->
+<div class="board cat-dfi" id="dfi-01">
+  <div class="ribbon">&nbsp;• AGIX PAVILIONS • AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE, ENUGU • HOSTED PAVILIONS FROM 36 SQM • AGIX PAVILIONS • EXPO 2027</div>
+  <div class="inner">
+    <div class="top"><svg width="84" height="84" viewBox="0 0 512 512"><use href="#pav"/></svg>
+      <div><div class="wordmark">AGIX <span>PAVILIONS</span></div><div class="tagline">National &amp; Trade Pavilions • Expo 2027</div></div>
+    </div>
+    <div class="catbadge">DFIs Pavilion</div>
+    <div class="headline hl-lg">Where Capital Meets<br/>the <span class="accent">Value Chain</span></div>
+    <div class="kicker">For <b>development finance institutions, banks and funds</b> — showcase your facilities and meet bankable agri-projects, SMEs and state programmes face-to-face.</div>
+    <div class="footline"><div class="cta">Reserve a DFIs Pavilion →</div><div class="url">hello@agixafrica.com</div></div>
+  </div>
+</div>
+
+<div class="board cat-dfi" id="dfi-02">
+  <div class="ribbon">&nbsp;• AGIX PAVILIONS • AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE, ENUGU • HOSTED PAVILIONS FROM 36 SQM • AGIX PAVILIONS • EXPO 2027</div>
+  <div class="inner">
+    <div class="top"><svg width="84" height="84" viewBox="0 0 512 512"><use href="#pav"/></svg>
+      <div><div class="wordmark">AGIX <span>PAVILIONS</span></div><div class="tagline">National &amp; Trade Pavilions • Expo 2027</div></div>
+    </div>
+    <div class="catbadge">DFIs Pavilion</div>
+    <div class="headline hl-md">Built for<br/><span class="accent">Deal-Flow</span></div>
+    <div class="list">
+      <div class="item">Showcase financing facilities &amp; instruments</div>
+      <div class="item">Meet bankable agri-projects &amp; investment-ready SMEs</div>
+      <div class="item">Deal-room access &amp; investment forum roles</div>
+      <div class="item">Policy engagement with federal &amp; state government</div>
+      <div class="item">Co-branded knowledge sessions &amp; year-round media</div>
+    </div>
+    <div class="footline"><div class="cta">Reserve a DFIs Pavilion →</div><div class="url">hello@agixafrica.com</div></div>
+  </div>
+</div>
+
+</body>
+</html>
