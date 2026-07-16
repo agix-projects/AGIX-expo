@@ -1,14 +1,14 @@
 # AGIX Agribusiness & Agritech Expo 2027 — Landing Page
 
 A professional, responsive landing page with registration data collection for the
-**AGIX Agribusiness & Agritech Expo 2027** — 28–30 January 2027, International
-Conference Centre (ICC), Enugu, Nigeria. Organised by Africa Growth Industries
+**AGIX Agribusiness & Agritech Expo 2027** — 9–10 April 2027, Amadeo Event Centre,
+Ebeano Tunnel Rd, Achara – Enugu, Nigeria. Organised by Africa Growth Industries
 Exchange (AGIX Africa) Ltd.
 
 ## Structure
 
 ```
-index.html                 Landing page (hero, about, highlights, venue, FAQ, registration form)
+index.html                 Landing page (hero, why attend, audience, partners, testimonials, venue, FAQ, registration form)
 css/styles.css             All styling (responsive, mobile-first breakpoints)
 js/main.js                 Countdown, mobile nav, form validation & submission
 admin/registrations.html   Local admin view — browse/export registrations as CSV or JSON
@@ -56,11 +56,12 @@ no registration is lost.
 | Item | Value |
 | --- | --- |
 | Event | AGIX Agribusiness & Agritech Expo 2027 |
-| Dates | Thursday 28 – Saturday 30 January 2027 |
-| Venue | International Conference Centre (ICC), Enugu 400102, Nigeria |
-| Organiser | Africa Growth Industries Exchange (AGIX Africa) Ltd |
-| Endorsement | Federal Ministry of Agriculture & Food Security (federal lead partner) |
-| Contact | hello@agixafrica.com · +234 702 642 1626 |
+| Dates | Friday 9 – Saturday 10 April 2027 |
+| Venue | Amadeo Event Centre, Ebeano Tunnel Rd, Achara – Enugu, Nigeria |
+| Organiser | Africa Growth Industries Exchange (AGIX Africa) Ltd — RC 9014701 (Nigeria), Companies House No. 111-878215 (UK) |
+| Endorsement | Officially endorsed by the Federal Ministry of Agriculture and Food Security · Official Federal Lead Partner |
+| Key figures | 3,000+ participants · 100+ exhibitors · 20+ speakers · 30+ countries |
+| Contact | hello@agixafrica.com · +234 702 642 1626 (NG) · +44 7442 797 645 (UK) |
 | Official site | https://agribizagritechexpo.agixafrica.com/ |
 
 To change dates or contact details later, update `index.html` (hero, venue, FAQ,

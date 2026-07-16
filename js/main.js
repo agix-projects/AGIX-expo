@@ -37,7 +37,7 @@
   }
 
   /* ---------- Countdown to opening day ---------- */
-  var EVENT_START = new Date("2027-01-28T09:00:00+01:00"); // WAT
+  var EVENT_START = new Date("2027-04-09T09:00:00+01:00"); // WAT
 
   function pad(n) {
     return n < 10 ? "0" + n : String(n);
