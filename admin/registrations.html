@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Registrations Admin | AGIX Expo 2027</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%BE%3C/text%3E%3C/svg%3E" />
+  <style>
+    :root { --green: #1a5227; --amber: #f2a91e; --border: #dbe5dd; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; background: #f4f8f5; color: #16211a; padding: 2rem 4%; line-height: 1.5; }
+    h1 { color: var(--green); font-size: 1.5rem; margin-bottom: 0.3rem; }
+    .note { color: #5f6f65; font-size: 0.9rem; max-width: 760px; margin-bottom: 1.5rem; }
+    .toolbar { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    button {
+      font-weight: 700; padding: 0.6rem 1.3rem; border-radius: 999px; cursor: pointer;
+      border: 2px solid var(--green); background: var(--green); color: #fff; font-size: 0.9rem;
+    }
+    button.secondary { background: #fff; color: var(--green); }
+    button.danger { border-color: #c0392b; background: #fff; color: #c0392b; }
+    .count { font-weight: 700; align-self: center; }
+    .table-wrap { overflow-x: auto; background: #fff; border: 1px solid var(--border); border-radius: 10px; }
+    table { border-collapse: collapse; width: 100%; font-size: 0.85rem; }
+    th, td { padding: 0.6rem 0.8rem; border-bottom: 1px solid var(--border); text-align: left; white-space: nowrap; }
+    th { background: var(--green); color: #fff; position: sticky; top: 0; }
+    tr:nth-child(even) td { background: #f7faf8; }
+    .empty { padding: 2.5rem; text-align: center; color: #5f6f65; }
+  </style>
+</head>
+<body>
+  <h1>AGIX Expo 2027 — Registrations</h1>
+  <p class="note">
+    This page lists registrations captured in <strong>this browser's</strong> local storage
+    (used as the capture store when no remote endpoint is configured, and as a backup copy when one is).
+    Open it on the same device/browser where the landing page collected the data.
+    Registrations sent to a remote endpoint (Formspree / Google Sheets / API) live in that service.
+  </p>
+
+  <div class="toolbar">
+    <button id="export-csv">Download CSV</button>
+    <button id="export-json" class="secondary">Download JSON</button>
+    <button id="clear" class="danger">Clear Local Data</button>
+    <span class="count" id="count"></span>
+  </div>
+
+  <div class="table-wrap" id="table-wrap"></div>
+
+  <script>
+    (function () {
+      "use strict";
+      var STORAGE_KEY = "agix_expo_registrations";
+      var COLUMNS = [
+        "submittedAt", "firstName", "lastName", "email", "phone", "organization",
+        "jobTitle", "country", "category", "interests", "hearAbout", "message", "consent"
+      ];
+
+      function load() {
+        try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"); }
+        catch (e) { return []; }
+      }
+
+      function cellValue(row, col) {
+        var v = row[col];
+        if (Array.isArray(v)) return v.join("; ");
+        if (typeof v === "boolean") return v ? "yes" : "no";
+        return v == null ? "" : String(v);
+      }
+
+      function render() {
+        var rows = load();
+        document.getElementById("count").textContent = rows.length + " registration(s)";
+        var wrap = document.getElementById("table-wrap");
+        if (!rows.length) {
+          wrap.innerHTML = '<p class="empty">No registrations stored in this browser yet.</p>';
+          return;
+        }
+        var html = "<table><thead><tr>";
+        COLUMNS.forEach(function (c) { html += "<th>" + c + "</th>"; });
+        html += "</tr></thead><tbody>";
+        rows.forEach(function (row) {
+          html += "<tr>";
+          COLUMNS.forEach(function (c) {
+            html += "<td>" + cellValue(row, c).replace(/&/g, "&amp;").replace(/</g, "&lt;") + "</td>";
+          });
+          html += "</tr>";
+        });
+        html += "</tbody></table>";
+        wrap.innerHTML = html;
+      }
+
+      function download(filename, text, type) {
+        var blob = new Blob([text], { type: type });
+        var a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = filename;
+        a.click();
+        URL.revokeObjectURL(a.href);
+      }
+
+      document.getElementById("export-csv").addEventListener("click", function () {
+        var rows = load();
+        var csv = COLUMNS.join(",") + "\n";
+        rows.forEach(function (row) {
+          csv += COLUMNS.map(function (c) {
+            return '"' + cellValue(row, c).replace(/"/g, '""') + '"';
+          }).join(",") + "\n";
+        });
+        download("agix-expo-registrations.csv", csv, "text/csv");
+      });
+
+      document.getElementById("export-json").addEventListener("click", function () {
+        download("agix-expo-registrations.json", JSON.stringify(load(), null, 2), "application/json");
+      });
+
+      document.getElementById("clear").addEventListener("click", function () {
+        if (confirm("Delete all locally stored registrations? Export them first if you need a copy.")) {
+          localStorage.removeItem(STORAGE_KEY);
+          render();
+        }
+      });
+
+      render();
+    })();
+  </script>
+</body>
+</html>
