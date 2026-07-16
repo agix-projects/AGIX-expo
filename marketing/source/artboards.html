@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+<style>
+
+  :root {
+    --g900: #0d2a14;
+    --g800: #123b1d;
+    --g700: #1a5227;
+    --g600: #2c9a46;
+    --amber: #f2a91e;
+    --cream: #f3ead8;
+    --mist: #cfe0d3;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #333; display: flex; flex-direction: column; gap: 40px; padding: 40px; font-family: "Inter", sans-serif; }
+
+  .board {
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    background:
+      radial-gradient(1400px 900px at 88% -12%, rgba(44, 154, 70, 0.55) 0%, transparent 55%),
+      radial-gradient(1000px 700px at -10% 110%, rgba(242, 169, 30, 0.16) 0%, transparent 55%),
+      linear-gradient(158deg, var(--g700) 0%, var(--g800) 48%, var(--g900) 100%);
+    flex: none;
+  }
+  /* faint field-row lines, like ploughed land */
+  .board::before {
+    content: "";
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(115deg, rgba(255,255,255,0.045) 0px, rgba(255,255,255,0.045) 1.5px, transparent 1.5px, transparent 90px);
+    pointer-events: none;
+  }
+
+  .ribbon {
+    position: absolute; left: 0; right: 0; top: 0;
+    background: var(--amber);
+    color: var(--g900);
+    font-family: "Archivo"; font-weight: 800;
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+    z-index: 3;
+  }
+  .ribbon.bottom { top: auto; bottom: 0; }
+
+  .lockup { display: flex; align-items: center; gap: 18px; z-index: 2; position: relative; }
+  .lockup .mark { flex: none; }
+  .lockup .name { font-family: "Archivo"; font-weight: 800; letter-spacing: 0.02em; }
+  .lockup .name span { color: var(--amber); }
+  .lockup .sub { font-family: "Inter"; font-weight: 600; letter-spacing: 0.34em; text-transform: uppercase; color: var(--mist); }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 14px;
+    font-family: "Inter"; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.3em; color: var(--amber);
+  }
+  .eyebrow::before, .eyebrow::after { content: ""; height: 2px; background: var(--amber); opacity: 0.7; }
+
+  .headline { font-family: "Archivo"; font-weight: 800; text-transform: uppercase; line-height: 0.97; letter-spacing: -0.01em; }
+  .headline .amber { color: var(--amber); }
+  .headline .outline { color: transparent; -webkit-text-stroke: 2.5px rgba(243, 234, 216, 0.85); }
+
+  .kicker { font-family: "Inter"; font-weight: 400; color: var(--mist); }
+
+  .chiprow { display: flex; gap: 18px; align-items: stretch; }
+  .chip {
+    display: flex; flex-direction: column; justify-content: center;
+    border: 2px solid rgba(243, 234, 216, 0.35);
+    border-left: 6px solid var(--amber);
+    padding: 18px 26px;
+    background: rgba(13, 42, 20, 0.55);
+  }
+  .chip .big { font-family: "Archivo"; font-weight: 800; color: #fff; }
+  .chip .small { font-family: "Inter"; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mist); }
+
+  .statrow { display: flex; align-items: center; }
+  .stat { display: flex; flex-direction: column; }
+  .stat b { font-family: "Archivo"; font-weight: 800; color: var(--amber); font-variant-numeric: tabular-nums; }
+  .stat i { font-style: normal; font-family: "Inter"; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mist); }
+  .statdiv { width: 2px; background: rgba(243, 234, 216, 0.25); align-self: stretch; }
+
+  .cta {
+    display: inline-flex; align-items: center; gap: 20px;
+    background: var(--amber); color: var(--g900);
+    font-family: "Archivo"; font-weight: 800; text-transform: uppercase;
+    border-radius: 999px;
+  }
+  .cta .arrow { font-family: "Inter"; font-weight: 600; }
+  .url { font-family: "Inter"; font-weight: 600; color: var(--cream); letter-spacing: 0.02em; }
+
+  .wheat { display: block; }
+
+  /* ---------------- 1. SQUARE — REGISTER (1080×1080) ---------------- */
+  #sq-register { width: 1080px; height: 1080px; }
+  #sq-register .ribbon { font-size: 21px; padding: 13px 0; letter-spacing: 0.12em; }
+  #sq-register .inner { position: absolute; inset: 47px 0 0 0; padding: 58px 72px 62px; display: flex; flex-direction: column; }
+  #sq-register .lockup .name { font-size: 40px; }
+  #sq-register .lockup .sub { font-size: 15px; margin-top: 4px; }
+  #sq-register .eyebrow { font-size: 21px; margin-top: 64px; }
+  #sq-register .eyebrow::before, #sq-register .eyebrow::after { width: 56px; }
+  #sq-register .headline { font-size: 104px; margin-top: 18px; }
+  #sq-register .chiprow { margin-top: 46px; }
+  #sq-register .chip .big { font-size: 34px; }
+  #sq-register .chip .small { font-size: 15px; margin-top: 5px; }
+  #sq-register .bottom { margin-top: auto; display: flex; align-items: center; justify-content: space-between; }
+  #sq-register .cta { font-size: 30px; padding: 24px 46px; }
+  #sq-register .url { font-size: 22px; }
+
+  /* ---------------- 2. STORY (1080×1920) ---------------- */
+  #story { width: 1080px; height: 1920px; }
+  #story .ribbon { font-size: 22px; padding: 15px 0; letter-spacing: 0.12em; }
+  #story .inner { position: absolute; inset: 53px 0 0 0; padding: 90px 84px 100px; display: flex; flex-direction: column; }
+  #story .lockup { justify-content: center; }
+  #story .lockup .name { font-size: 46px; }
+  #story .lockup .sub { font-size: 17px; margin-top: 5px; }
+  #story .eyebrow { font-size: 24px; margin-top: 120px; align-self: center; }
+  #story .eyebrow::before, #story .eyebrow::after { width: 64px; }
+  #story .headline { font-size: 106px; margin-top: 26px; text-align: center; }
+  #story .kicker { font-size: 30px; line-height: 1.5; text-align: center; margin-top: 44px; padding: 0 40px; }
+  #story .chiprow { margin-top: 78px; flex-direction: column; gap: 22px; }
+  #story .chip { padding: 26px 34px; }
+  #story .chip .big { font-size: 44px; }
+  #story .chip .small { font-size: 18px; margin-top: 6px; }
+  #story .bottom { margin-top: auto; display: flex; flex-direction: column; align-items: center; gap: 30px; }
+  #story .cta { font-size: 38px; padding: 32px 66px; }
+  #story .url { font-size: 26px; }
+
+  /* ---------------- 3. LANDSCAPE (1200×628) ---------------- */
+  #landscape { width: 1200px; height: 628px; }
+  #landscape .ribbon { font-size: 15px; padding: 9px 0; letter-spacing: 0.12em; }
+  #landscape .inner { position: absolute; inset: 33px 0 0 0; padding: 40px 60px 44px; display: flex; }
+  #landscape .left { display: flex; flex-direction: column; width: 640px; }
+  #landscape .lockup .name { font-size: 30px; }
+  #landscape .lockup .sub { font-size: 12px; margin-top: 3px; }
+  #landscape .eyebrow { font-size: 15px; margin-top: 40px; }
+  #landscape .eyebrow::before, #landscape .eyebrow::after { width: 40px; }
+  #landscape .headline { font-size: 62px; margin-top: 12px; }
+  #landscape .bottom { margin-top: auto; display: flex; align-items: center; gap: 28px; }
+  #landscape .cta { font-size: 19px; padding: 16px 30px; }
+  #landscape .url { font-size: 15px; }
+  #landscape .right { margin-left: auto; display: flex; flex-direction: column; justify-content: center; align-items: flex-end; gap: 16px; }
+  #landscape .datecard {
+    border: 2.5px solid rgba(243, 234, 216, 0.4);
+    border-top: 8px solid var(--amber);
+    background: rgba(13, 42, 20, 0.55);
+    padding: 26px 38px; text-align: center;
+  }
+  #landscape .datecard .d1 { font-family: "Archivo"; font-weight: 800; font-size: 74px; color: var(--amber); line-height: 1; }
+  #landscape .datecard .d2 { font-family: "Archivo"; font-weight: 800; font-size: 30px; margin-top: 8px; }
+  #landscape .datecard .d3 { font-family: "Inter"; font-weight: 600; font-size: 14px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mist); margin-top: 10px; }
+
+  /* ---------------- 4. SQUARE — EXHIBITOR (1080×1080) ---------------- */
+  #sq-exhibit { width: 1080px; height: 1080px; }
+  #sq-exhibit .ribbon { font-size: 21px; padding: 13px 0; letter-spacing: 0.12em; }
+  #sq-exhibit .inner { position: absolute; inset: 0 0 47px 0; padding: 64px 72px 60px; display: flex; flex-direction: column; }
+  #sq-exhibit .lockup .name { font-size: 40px; }
+  #sq-exhibit .lockup .sub { font-size: 15px; margin-top: 4px; }
+  #sq-exhibit .eyebrow { font-size: 21px; margin-top: 58px; }
+  #sq-exhibit .eyebrow::before, #sq-exhibit .eyebrow::after { width: 56px; }
+  #sq-exhibit .headline { font-size: 118px; margin-top: 18px; }
+  #sq-exhibit .kicker { font-size: 29px; line-height: 1.5; margin-top: 34px; max-width: 820px; }
+  #sq-exhibit .kicker b { color: var(--amber); font-weight: 600; }
+  #sq-exhibit .statrow { margin-top: 52px; gap: 38px; }
+  #sq-exhibit .stat b { font-size: 52px; }
+  #sq-exhibit .stat i { font-size: 15px; margin-top: 6px; }
+  #sq-exhibit .bottom { margin-top: auto; display: flex; align-items: center; justify-content: space-between; }
+  #sq-exhibit .cta { font-size: 30px; padding: 24px 46px; }
+  #sq-exhibit .url { font-size: 22px; }
+
+  /* ---------------- 5. X / TWITTER HEADER (1500×500) ---------------- */
+  #xheader { width: 1500px; height: 500px; }
+  #xheader .inner { position: absolute; inset: 0; padding: 60px 80px; display: flex; align-items: center; gap: 70px; }
+  #xheader .lockup .name { font-size: 34px; }
+  #xheader .lockup .sub { font-size: 13px; margin-top: 3px; }
+  #xheader .mid { flex: 1; }
+  #xheader .headline { font-size: 66px; }
+  #xheader .kicker { font-size: 19px; margin-top: 16px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; }
+  #xheader .kicker b { color: var(--amber); }
+  #xheader .datecard { text-align: right; flex: none; border-right: 8px solid var(--amber); padding-right: 34px; }
+  #xheader .datecard .d1 { font-family: "Archivo"; font-weight: 800; font-size: 56px; color: var(--amber); line-height: 1.05; }
+  #xheader .datecard .d3 { font-family: "Inter"; font-weight: 600; font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mist); margin-top: 10px; line-height: 1.6; }
+
+  /* ---------------- 6. EMAIL HEADER (1200×400) ---------------- */
+  #email { width: 1200px; height: 400px; }
+  #email .ribbon.bottom { font-size: 14px; padding: 8px 0; letter-spacing: 0.12em; }
+  #email .inner { position: absolute; inset: 0 0 31px 0; padding: 44px 60px; display: flex; align-items: center; gap: 50px; }
+  #email .left { flex: 1; }
+  #email .lockup .name { font-size: 27px; }
+  #email .lockup .sub { font-size: 11px; margin-top: 2px; }
+  #email .headline { font-size: 52px; margin-top: 26px; }
+  #email .datecard { flex: none; text-align: right; border-right: 7px solid var(--amber); padding-right: 30px; }
+  #email .datecard .d1 { font-family: "Archivo"; font-weight: 800; font-size: 46px; color: var(--amber); line-height: 1.1; }
+  #email .datecard .d3 { font-family: "Inter"; font-weight: 600; font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mist); margin-top: 8px; line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<!-- Wheat mark (reused via <use>) -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <g id="wheat">
+      <line x1="50" y1="10" x2="50" y2="96" stroke="#f2a91e" stroke-width="5" stroke-linecap="round"/>
+      <ellipse cx="36" cy="26" rx="8" ry="15" fill="#f2a91e" transform="rotate(-32 36 26)"/>
+      <ellipse cx="64" cy="26" rx="8" ry="15" fill="#f2a91e" transform="rotate(32 64 26)"/>
+      <ellipse cx="33" cy="48" rx="8" ry="15" fill="#f2a91e" transform="rotate(-32 33 48)"/>
+      <ellipse cx="67" cy="48" rx="8" ry="15" fill="#f2a91e" transform="rotate(32 67 48)"/>
+      <ellipse cx="35" cy="70" rx="8" ry="15" fill="#cfe0d3" transform="rotate(-32 35 70)"/>
+      <ellipse cx="65" cy="70" rx="8" ry="15" fill="#cfe0d3" transform="rotate(32 65 70)"/>
+      <ellipse cx="50" cy="12" rx="8" ry="15" fill="#f2a91e"/>
+    </g>
+  </defs>
+</svg>
+
+<!-- 1. SQUARE — REGISTER -->
+<div class="board" id="sq-register">
+  <div class="ribbon">&nbsp;• OFFICIALLY ENDORSED BY THE FEDERAL MINISTRY OF AGRICULTURE AND FOOD SECURITY • OFFICIAL FEDERAL LEAD PARTNER • OFFICIALLY ENDORSED BY THE FEDERAL MINISTRY OF AGRICULTURE AND FOOD SECURITY</div>
+  <div class="inner">
+    <div class="lockup">
+      <svg class="mark wheat" width="74" height="74" viewBox="0 0 100 100"><use href="#wheat"/></svg>
+      <div>
+        <div class="name">AGIX <span>AFRICA</span></div>
+        <div class="sub">Africa Growth Industries Exchange</div>
+      </div>
+    </div>
+    <div class="eyebrow">Enugu &nbsp;•&nbsp; Nigeria</div>
+    <div class="headline">Agribusiness<br/>&amp; <span class="amber">Agritech</span><br/>Expo <span class="outline">2027</span></div>
+    <div class="chiprow">
+      <div class="chip"><div class="big">9–10 April 2027</div><div class="small">Friday – Saturday</div></div>
+      <div class="chip"><div class="big">Amadeo Event Centre</div><div class="small">Achara – Enugu, Nigeria</div></div>
+    </div>
+    <div class="bottom">
+      <div class="cta">Register Free <span class="arrow">→</span></div>
+      <div class="url">agribizagritechexpo.agixafrica.com</div>
+    </div>
+  </div>
+</div>
+
+<!-- 2. STORY -->
+<div class="board" id="story">
+  <div class="ribbon">&nbsp;• OFFICIALLY ENDORSED BY THE FEDERAL MINISTRY OF AGRICULTURE AND FOOD SECURITY • OFFICIAL FEDERAL LEAD PARTNER • OFFICIALLY ENDORSED BY THE FEDERAL MINISTRY OF AGRICULTURE AND FOOD SECURITY</div>
+  <div class="inner">
+    <div class="lockup">
+      <svg class="mark wheat" width="84" height="84" viewBox="0 0 100 100"><use href="#wheat"/></svg>
+      <div>
+        <div class="name">AGIX <span>AFRICA</span></div>
+        <div class="sub">Africa Growth Industries Exchange</div>
+      </div>
+    </div>
+    <div class="eyebrow">Enugu &nbsp;•&nbsp; Nigeria</div>
+    <div class="headline">Agribusiness<br/>&amp; <span class="amber">Agritech</span><br/>Expo <span class="outline">2027</span></div>
+    <div class="kicker">Join 3,000+ agrifood leaders, investors and innovators shaping Africa's next decade of agricultural transformation.</div>
+    <div class="chiprow">
+      <div class="chip"><div class="big">9–10 April 2027</div><div class="small">Friday – Saturday</div></div>
+      <div class="chip"><div class="big">Amadeo Event Centre</div><div class="small">Ebeano Tunnel Rd, Achara – Enugu, Nigeria</div></div>
+    </div>
+    <div class="bottom">
+      <div class="cta">Register Free <span class="arrow">→</span></div>
+      <div class="url">agribizagritechexpo.agixafrica.com</div>
+    </div>
+  </div>
+</div>
+
+<!-- 3. LANDSCAPE -->
+<div class="board" id="landscape">
+  <div class="ribbon">&nbsp;• OFFICIALLY ENDORSED BY THE FEDERAL MINISTRY OF AGRICULTURE AND FOOD SECURITY • OFFICIAL FEDERAL LEAD PARTNER • AGIX AFRICA AGRIBUSINESS &amp; AGRITECH EXPO 2027 • ENUGU, NIGERIA •&nbsp;OFFICIALLY ENDORSED BY THE FEDERAL MINISTRY</div>
+  <div class="inner">
+    <div class="left">
+      <div class="lockup">
+        <svg class="mark wheat" width="56" height="56" viewBox="0 0 100 100"><use href="#wheat"/></svg>
+        <div>
+          <div class="name">AGIX <span>AFRICA</span></div>
+          <div class="sub">Africa Growth Industries Exchange</div>
+        </div>
+      </div>
+      <div class="eyebrow">Enugu &nbsp;•&nbsp; Nigeria</div>
+      <div class="headline">Agribusiness &amp;<br/><span class="amber">Agritech</span> Expo</div>
+      <div class="bottom">
+        <div class="cta">Register Free <span class="arrow">→</span></div>
+        <div class="url">agribizagritechexpo.agixafrica.com</div>
+      </div>
+    </div>
+    <div class="right">
+      <div class="datecard">
+        <div class="d1">9–10</div>
+        <div class="d2">APRIL 2027</div>
+        <div class="d3">Amadeo Event Centre<br/>Achara – Enugu</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 4. SQUARE — EXHIBITOR -->
+<div class="board" id="sq-exhibit">
+  <div class="ribbon bottom">&nbsp;• AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE, ENUGU • BOOTHS FROM 9 SQM • AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE</div>
+  <div class="inner">
+    <div class="lockup">
+      <svg class="mark wheat" width="74" height="74" viewBox="0 0 100 100"><use href="#wheat"/></svg>
+      <div>
+        <div class="name">AGIX <span>AFRICA</span></div>
+        <div class="sub">Africa Growth Industries Exchange</div>
+      </div>
+    </div>
+    <div class="eyebrow">Exhibitors &amp; Sponsors</div>
+    <div class="headline">Book<br/>Your <span class="amber">Stand</span></div>
+    <div class="kicker">Be first in the produce belt. Meet the buyers, farmers and financiers of South-East Nigeria — <b>before your competitors arrive</b>.</div>
+    <div class="statrow">
+      <div class="stat"><b>3,000+</b><i>Participants</i></div>
+      <div class="statdiv"></div>
+      <div class="stat"><b>100+</b><i>Exhibitors</i></div>
+      <div class="statdiv"></div>
+      <div class="stat"><b>30+</b><i>Countries</i></div>
+    </div>
+    <div class="bottom">
+      <div class="cta">Become an Exhibitor <span class="arrow">→</span></div>
+      <div class="url">hello@agixafrica.com</div>
+    </div>
+  </div>
+</div>
+
+<!-- 5. X HEADER -->
+<div class="board" id="xheader">
+  <div class="inner">
+    <div class="lockup">
+      <svg class="mark wheat" width="88" height="88" viewBox="0 0 100 100"><use href="#wheat"/></svg>
+      <div>
+        <div class="name">AGIX <span>AFRICA</span></div>
+        <div class="sub">Africa Growth<br/>Industries Exchange</div>
+      </div>
+    </div>
+    <div class="mid">
+      <div class="headline">Agribusiness &amp; <span class="amber">Agritech</span> Expo 2027</div>
+      <div class="kicker">Officially endorsed by the <b>Federal Ministry of Agriculture and Food Security</b></div>
+    </div>
+    <div class="datecard">
+      <div class="d1">9–10<br/>APRIL</div>
+      <div class="d3">Amadeo Event Centre<br/>Enugu • Nigeria</div>
+    </div>
+  </div>
+</div>
+
+<!-- 6. EMAIL HEADER -->
+<div class="board" id="email">
+  <div class="ribbon bottom">&nbsp;• OFFICIALLY ENDORSED BY THE FEDERAL MINISTRY OF AGRICULTURE AND FOOD SECURITY • OFFICIAL FEDERAL LEAD PARTNER • AGIX AFRICA AGRIBUSINESS &amp; AGRITECH EXPO 2027 • ENUGU, NIGERIA •&nbsp;OFFICIALLY ENDORSED</div>
+  <div class="inner">
+    <div class="left">
+      <div class="lockup">
+        <svg class="mark wheat" width="48" height="48" viewBox="0 0 100 100"><use href="#wheat"/></svg>
+        <div>
+          <div class="name">AGIX <span>AFRICA</span></div>
+          <div class="sub">Africa Growth Industries Exchange</div>
+        </div>
+      </div>
+      <div class="headline">Agribusiness &amp; <span class="amber">Agritech</span><br/>Expo 2027</div>
+    </div>
+    <div class="datecard">
+      <div class="d1">9–10 APRIL</div>
+      <div class="d3">Amadeo Event Centre<br/>Enugu • Nigeria</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
