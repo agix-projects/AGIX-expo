@@ -24,6 +24,18 @@ Ready-to-post graphics in the site's brand identity (deep green, amber, Archivo/
 | `agix-expo-landscape-global-bridge-1200x628.png` | 1200×628 | "A Global Bridge, Not a Local Fair" — coordinating partner countries |
 | `agix-expo-landscape-venue-1200x628.png` | 1200×628 | Venue announcement — Amadeo Event Centre with facilities |
 
+### Campaign series (30 posts, 1080×1080 — `campaigns/`)
+
+Six posts per theme, ready to run as weekly series or carousels:
+
+- `campaigns/why-enugu/` — produce-belt positioning ("Lagos has conferences. Enugu has the farms."), first-mover advantage, connectivity, venue
+- `campaigns/why-exhibit/` — reasons to exhibit, who you meet, top-reasons checklist, market figures, booth teaser
+- `campaigns/why-sponsor/` — sponsor ROI, industry leadership, benefits checklist, tier overview, prospectus CTA
+- `campaigns/about-the-expo/` — premier-marketplace positioning, federal endorsement, three engines, figures, audience, save-the-date
+- `campaigns/booth-packages/` — package overview, Standard 9sqm, Premium 18sqm, Custom 36sqm+, add-ons, exhibitor services
+
+Source: `source/artboards-campaigns.html`.
+
 ## Editing & regenerating
 
 `source/artboards.html` (launch set) and `source/artboards-about.html` (About-page
