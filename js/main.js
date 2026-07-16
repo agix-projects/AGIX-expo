@@ -6,17 +6,25 @@
   /* ------------------------------------------------------------------
    * CONFIG — registration data collection
    *
-   * Set FORM_ENDPOINT to a URL that accepts a JSON POST to collect
-   * registrations remotely, e.g.:
+   * Every submission is POSTed to FORM_ENDPOINT. It is currently set to
+   * FormSubmit's relay, which emails each registration to
+   * REGISTRATION_EMAIL (peace.ezema@agixafrica.com).
+   *
+   * NOTE: FormSubmit sends a one-time activation email to that address
+   * after the first submission — it must be confirmed once before
+   * registrations start arriving.
+   *
+   * Alternatives (swap FORM_ENDPOINT, see README.md):
    *   - Formspree:            https://formspree.io/f/<your-form-id>
    *   - Google Apps Script:   https://script.google.com/macros/s/<id>/exec
    *   - Your own API:         https://api.example.com/registrations
    *
-   * If left empty, submissions are saved to this browser's localStorage
-   * and can be reviewed/exported as CSV from admin/registrations.html.
-   * (See README.md for step-by-step backend setup.)
+   * If set to "", submissions are only saved to this browser's
+   * localStorage (reviewable via admin/registrations.html). A local
+   * backup copy is kept in every mode.
    * ------------------------------------------------------------------ */
-  var FORM_ENDPOINT = "";
+  var REGISTRATION_EMAIL = "peace.ezema@agixafrica.com";
+  var FORM_ENDPOINT = "https://formsubmit.co/ajax/" + REGISTRATION_EMAIL;
   var STORAGE_KEY = "agix_expo_registrations";
 
   /* ---------- Mobile navigation ---------- */
@@ -164,10 +172,20 @@
   }
 
   function sendRemote(data) {
+    var payload = {};
+    Object.keys(data).forEach(function (k) {
+      payload[k] = Array.isArray(data[k]) ? data[k].join("; ") : data[k];
+    });
+    // FormSubmit email formatting (ignored by other backends)
+    payload._subject =
+      "AGIX Expo 2027 Registration — " + data.firstName + " " + data.lastName +
+      (data.category ? " (" + data.category + ")" : "");
+    payload._template = "table";
+
     return fetch(FORM_ENDPOINT, {
       method: "POST",
       headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify(data)
+      body: JSON.stringify(payload)
     }).then(function (res) {
       if (!res.ok) throw new Error("HTTP " + res.status);
     });
@@ -205,13 +223,13 @@
           done(true);
         })
         .catch(function () {
-          // Endpoint unreachable — keep the registration locally so it isn't lost.
-          var saved = saveLocally(data);
+          // Endpoint unreachable — keep the registration locally so it isn't lost,
+          // but be honest that it hasn't reached the team yet.
+          saveLocally(data);
           done(
-            saved,
-            saved
-              ? successMsg
-              : "Something went wrong submitting your registration. Please try again or email hello@agixafrica.com."
+            false,
+            "We couldn't reach the registration service. Your details were saved on this device — " +
+              "please try again shortly, or email them to " + REGISTRATION_EMAIL + " to complete your registration."
           );
         });
     } else {
@@ -220,7 +238,7 @@
         saved,
         saved
           ? successMsg
-          : "Something went wrong submitting your registration. Please try again or email hello@agixafrica.com."
+          : "Something went wrong submitting your registration. Please try again or email " + REGISTRATION_EMAIL + "."
       );
     }
   });

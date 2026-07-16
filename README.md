@@ -38,26 +38,31 @@ The form collects: name, email, phone/WhatsApp, organisation, job title, country
 attendee category, areas of interest, referral source, message, and contact consent
 (each record is timestamped).
 
-Two modes, controlled by `FORM_ENDPOINT` at the top of `js/main.js`:
+**Every registration is emailed to `peace.ezema@agixafrica.com`.** `FORM_ENDPOINT`
+in `js/main.js` points at [FormSubmit](https://formsubmit.co)'s relay
+(`https://formsubmit.co/ajax/peace.ezema@agixafrica.com`), which delivers each
+submission as a formatted table email — no account or server required.
 
-1. **Remote endpoint (recommended for production).** Set `FORM_ENDPOINT` to a URL
-   that accepts a JSON `POST`, and every submission is sent there (a local backup
-   copy is also kept in the visitor's browser):
-   - **Formspree** — create a form at [formspree.io](https://formspree.io) and use
-     `https://formspree.io/f/<your-form-id>`.
-   - **Google Sheets** — create a Google Apps Script Web App bound to a sheet that
-     appends `e.postData.contents` rows, deploy it with "Anyone" access, and use the
-     `https://script.google.com/macros/s/<id>/exec` URL.
-   - **Your own API** — any endpoint accepting `application/json`.
+> **One-time activation:** after the very first submission from the live site,
+> FormSubmit sends an activation email to peace.ezema@agixafrica.com. It must be
+> confirmed once; until then submissions are not delivered. Send a test
+> registration after deploying and click the activation link.
 
-2. **Local capture (default, works out of the box).** With `FORM_ENDPOINT` empty,
-   submissions are stored in the browser's `localStorage`. Open
-   `admin/registrations.html` **in the same browser** to view them and download
-   CSV/JSON. This is fine for demos and on-site kiosk registration desks, but data
-   stays on that one device — configure a remote endpoint before public launch.
+Other options (swap `FORM_ENDPOINT` in `js/main.js`):
 
-If the remote endpoint is unreachable, the submission falls back to local storage so
-no registration is lost.
+- **Formspree** — create a form at [formspree.io](https://formspree.io) and use
+  `https://formspree.io/f/<your-form-id>` (also delivers by email; dashboard + CSV
+  export on paid tiers).
+- **Google Sheets** — a Google Apps Script Web App bound to a sheet that appends
+  `e.postData.contents` rows, deployed with "Anyone" access.
+- **Your own API** — any endpoint accepting `application/json`.
+- **Local capture only** — set `FORM_ENDPOINT = ""`; submissions stay in the
+  browser's `localStorage` (fine for demos or kiosk desks).
+
+In every mode a backup copy is kept in the visitor's browser, viewable via
+`admin/registrations.html` on that device. If the email relay is unreachable, the
+visitor is told their registration hasn't reached the team and asked to retry or
+email peace.ezema@agixafrica.com directly — nothing is silently lost.
 
 ## Event details used
 
