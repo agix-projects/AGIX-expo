@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet" /><style>
+  :root { --g900:#0d2a14; --g800:#123b1d; --g700:#1a5227; --g600:#2c9a46; --amber:#f2a91e; --cream:#f3ead8; --mist:#cfe0d3; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:#333; display:flex; flex-direction:column; gap:40px; padding:40px; font-family:"Inter",sans-serif; }
+  .board { position:relative; overflow:hidden; color:#fff; flex:none; width:1080px; height:1080px;
+    background:
+      radial-gradient(1400px 900px at 88% -12%, rgba(44,154,70,0.55) 0%, transparent 55%),
+      radial-gradient(1000px 700px at -10% 110%, rgba(242,169,30,0.16) 0%, transparent 55%),
+      linear-gradient(158deg, var(--g700) 0%, var(--g800) 48%, var(--g900) 100%); }
+  .board::before { content:""; position:absolute; inset:0;
+    background:repeating-linear-gradient(115deg, rgba(255,255,255,0.045) 0px, rgba(255,255,255,0.045) 1.5px, transparent 1.5px, transparent 90px); pointer-events:none; }
+  .ribbon { position:absolute; left:0; right:0; top:0; background:var(--amber); color:var(--g900);
+    font-family:"Archivo"; font-weight:800; text-transform:uppercase; white-space:nowrap; overflow:hidden; z-index:3;
+    font-size:21px; padding:13px 0; letter-spacing:0.12em; }
+  .inner { position:absolute; inset:47px 0 0 0; padding:56px 72px 54px; display:flex; flex-direction:column; }
+  .lockup { display:flex; align-items:center; gap:18px; }
+  .lockup .name { font-family:"Archivo"; font-weight:800; font-size:36px; }
+  .lockup .name span { color:var(--amber); }
+  .lockup .sub { font-weight:600; font-size:13px; margin-top:3px; letter-spacing:0.34em; text-transform:uppercase; color:var(--mist); }
+  .newsflag { display:inline-flex; align-items:center; gap:14px; margin-top:48px; width:fit-content;
+    background:rgba(242,169,30,0.14); border:2px solid var(--amber); border-radius:999px; padding:12px 26px;
+    font-family:"Archivo"; font-weight:800; font-size:20px; letter-spacing:0.14em; text-transform:uppercase; color:var(--amber); }
+  .headline { font-family:"Archivo"; font-weight:800; text-transform:uppercase; line-height:1.0; margin-top:24px; }
+  .headline .amber { color:var(--amber); }
+  .hl-xl { font-size:112px; } .hl-lg { font-size:90px; } .hl-md { font-size:76px; }
+  .kicker { font-weight:400; color:var(--mist); font-size:29px; line-height:1.52; margin-top:32px; max-width:900px; }
+  .kicker b { color:var(--amber); font-weight:600; }
+  .bignum { font-family:"Archivo"; font-weight:800; color:var(--amber); font-size:200px; line-height:0.95; margin-top:30px; letter-spacing:-0.02em; font-variant-numeric:tabular-nums; }
+  .bignum small { font-size:76px; color:#fff; }
+  .qmark { font-family:"Archivo"; font-weight:800; font-size:220px; line-height:0.6; color:var(--amber); margin-top:64px; height:104px; }
+  .quote { font-size:42px; line-height:1.45; color:#fff; margin-top:18px; max-width:910px; }
+  .quote b { color:var(--amber); font-weight:600; }
+  .attr { font-family:"Archivo"; font-weight:800; font-size:25px; text-transform:uppercase; margin-top:36px; }
+  .attr span { display:block; font-family:"Inter"; font-weight:600; font-size:17px; letter-spacing:0.12em; color:var(--mist); margin-top:6px; }
+  .list { display:grid; grid-template-columns:1fr; gap:22px; margin-top:40px; }
+  .item { display:flex; align-items:flex-start; gap:16px; font-weight:600; font-size:26px; color:var(--cream); line-height:1.35; }
+  .item::before { content:"✓"; color:var(--amber); font-weight:800; font-size:28px; flex:none; line-height:1.2; }
+  .src { font-size:16px; color:#9db5a3; font-weight:600; margin-top:auto; padding-top:20px; }
+  .footline { display:flex; align-items:center; justify-content:space-between; margin-top:14px; }
+  .cta { background:var(--amber); color:var(--g900); font-family:"Archivo"; font-weight:800; text-transform:uppercase;
+    border-radius:999px; font-size:26px; padding:21px 40px; }
+  .url { font-weight:600; color:var(--cream); font-size:20px; }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute"><defs><g id="wheat">
+<line x1="50" y1="10" x2="50" y2="96" stroke="#f2a91e" stroke-width="5" stroke-linecap="round"/>
+<ellipse cx="36" cy="26" rx="8" ry="15" fill="#f2a91e" transform="rotate(-32 36 26)"/>
+<ellipse cx="64" cy="26" rx="8" ry="15" fill="#f2a91e" transform="rotate(32 64 26)"/>
+<ellipse cx="33" cy="48" rx="8" ry="15" fill="#f2a91e" transform="rotate(-32 33 48)"/>
+<ellipse cx="67" cy="48" rx="8" ry="15" fill="#f2a91e" transform="rotate(32 67 48)"/>
+<ellipse cx="35" cy="70" rx="8" ry="15" fill="#cfe0d3" transform="rotate(-32 35 70)"/>
+<ellipse cx="65" cy="70" rx="8" ry="15" fill="#cfe0d3" transform="rotate(32 65 70)"/>
+<ellipse cx="50" cy="12" rx="8" ry="15" fill="#f2a91e"/></g></defs></svg>
+
+<!-- 1. THE MOMENTUM IS REAL -->
+<div class="board" id="mom-01">
+  <div class="ribbon">&nbsp;• AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE, ENUGU • REGISTER FREE • AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE</div>
+  <div class="inner">
+    <div class="lockup"><svg width="64" height="64" viewBox="0 0 100 100"><use href="#wheat"/></svg>
+      <div><div class="name">AGIX <span>AFRICA</span></div><div class="sub">Africa Growth Industries Exchange</div></div></div>
+    <div class="newsflag">Enugu Momentum • June 2026</div>
+    <div class="headline hl-lg">The Momentum<br/>Is <span class="amber">Real</span></div>
+    <div class="kicker">Enugu State and the <b>South East Development Commission</b> have signed an MoU launching the South East Agro Development Programme — the first state-level partnership in the Commission's regional agricultural transformation agenda. <b>AGIX 2027 puts you at the centre of it.</b></div>
+    <div class="src">Source: Vanguard News / Enugu State Government, June 2026</div>
+    <div class="footline"><div class="cta">Register Free →</div><div class="url">agribizagritechexpo.agixafrica.com</div></div>
+  </div>
+</div>
+
+<!-- 2. 52,000 HECTARES -->
+<div class="board" id="mom-02">
+  <div class="ribbon">&nbsp;• AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE, ENUGU • REGISTER FREE • AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE</div>
+  <div class="inner">
+    <div class="lockup"><svg width="64" height="64" viewBox="0 0 100 100"><use href="#wheat"/></svg>
+      <div><div class="name">AGIX <span>AFRICA</span></div><div class="sub">Africa Growth Industries Exchange</div></div></div>
+    <div class="newsflag">Enugu Momentum • June 2026</div>
+    <div class="bignum">52,000<small> ha</small></div>
+    <div class="kicker"><b>Earmarked for agricultural development</b> across designated farm estates in Enugu State — with government backing for investors and protection for host communities. Meet the people opening this land at <b>AGIX Expo 2027</b>.</div>
+    <div class="src">Source: THISDAY / Enugu State Government, June 2026</div>
+    <div class="footline"><div class="cta">Register Free →</div><div class="url">agribizagritechexpo.agixafrica.com</div></div>
+  </div>
+</div>
+
+<!-- 3. $4.4BN → $30BN -->
+<div class="board" id="mom-03">
+  <div class="ribbon">&nbsp;• AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE, ENUGU • REGISTER FREE • AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE</div>
+  <div class="inner">
+    <div class="lockup"><svg width="64" height="64" viewBox="0 0 100 100"><use href="#wheat"/></svg>
+      <div><div class="name">AGIX <span>AFRICA</span></div><div class="sub">Africa Growth Industries Exchange</div></div></div>
+    <div class="newsflag">Enugu Momentum • June 2026</div>
+    <div class="headline hl-md">$4.4BN →<br/><span class="amber">$30BN</span></div>
+    <div class="kicker">Enugu's declared ambition — an economy growing nearly sevenfold, <b>driven largely by agriculture, value addition and agro-processing</b>. The businesses that show up early own the upside. AGIX 2027 is the front door.</div>
+    <div class="src">Source: Vanguard News / Enugu State Government, June 2026</div>
+    <div class="footline"><div class="cta">Register Free →</div><div class="url">agribizagritechexpo.agixafrica.com</div></div>
+  </div>
+</div>
+
+<!-- 4. FIVE STATES ONE ECOSYSTEM -->
+<div class="board" id="mom-04">
+  <div class="ribbon">&nbsp;• AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE, ENUGU • REGISTER FREE • AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE</div>
+  <div class="inner">
+    <div class="lockup"><svg width="64" height="64" viewBox="0 0 100 100"><use href="#wheat"/></svg>
+      <div><div class="name">AGIX <span>AFRICA</span></div><div class="sub">Africa Growth Industries Exchange</div></div></div>
+    <div class="newsflag">Enugu Momentum • June 2026</div>
+    <div class="headline hl-lg">Five States.<br/>One <span class="amber">Ecosystem.</span></div>
+    <div class="kicker">The SEDC plans to extend the agro programme across <b>all five South-East states</b> — an integrated agro-industrial ecosystem for productivity, regional trade and shared prosperity. Enugu signed first. Abia is next. Mapping is underway in Ebonyi.</div>
+    <div class="src">Source: Vanguard News / SEDC, June 2026</div>
+    <div class="footline"><div class="cta">Register Free →</div><div class="url">agribizagritechexpo.agixafrica.com</div></div>
+  </div>
+</div>
+
+<!-- 5. QUOTE — SEDC -->
+<div class="board" id="mom-05">
+  <div class="ribbon">&nbsp;• AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE, ENUGU • REGISTER FREE • AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE</div>
+  <div class="inner">
+    <div class="lockup"><svg width="64" height="64" viewBox="0 0 100 100"><use href="#wheat"/></svg>
+      <div><div class="name">AGIX <span>AFRICA</span></div><div class="sub">Africa Growth Industries Exchange</div></div></div>
+    <div class="qmark">&ldquo;</div>
+    <div class="quote">The true measure will be what follows: <b>the land prepared, the investments attracted, the jobs created, the communities empowered</b>, and the impact felt by ordinary people.</div>
+    <div class="attr">South East Development Commission<span>At the signing of the Enugu Agro Development MoU — June 2026</span></div>
+    <div class="src">Source: Vanguard News, June 2026 • Meet the ecosystem at AGIX Expo 2027, Enugu</div>
+    <div class="footline"><div class="cta">Register Free →</div><div class="url">agribizagritechexpo.agixafrica.com</div></div>
+  </div>
+</div>
+
+<!-- 6. WHY ENUGU — ANSWERED -->
+<div class="board" id="mom-06">
+  <div class="ribbon">&nbsp;• AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE, ENUGU • REGISTER FREE • AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE</div>
+  <div class="inner">
+    <div class="lockup"><svg width="64" height="64" viewBox="0 0 100 100"><use href="#wheat"/></svg>
+      <div><div class="name">AGIX <span>AFRICA</span></div><div class="sub">Africa Growth Industries Exchange</div></div></div>
+    <div class="newsflag">Enugu Momentum • June 2026</div>
+    <div class="headline hl-md">"Why Enugu?"<br/><span class="amber">Answered.</span></div>
+    <div class="list">
+      <div class="item">First state-level MoU under SEDC's regional agro agenda</div>
+      <div class="item">52,000+ hectares earmarked across farm estates</div>
+      <div class="item">$30bn economic ambition powered by agriculture</div>
+      <div class="item">Agro-industrial ecosystem planned across five states</div>
+      <div class="item">Jobs, inclusive growth — and a region open for investors</div>
+    </div>
+    <div class="src">Sources: Vanguard News, THISDAY, Enugu State Government — June 2026</div>
+    <div class="footline"><div class="cta">Register Free →</div><div class="url">agribizagritechexpo.agixafrica.com</div></div>
+  </div>
+</div>
+
+</body>
+</html>
