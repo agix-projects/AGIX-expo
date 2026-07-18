@@ -1,0 +1,198 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet" /><style>
+  :root { --g900:#0d2a14; --g800:#123b1d; --g700:#1a5227; --g600:#2c9a46; --amber:#f2a91e; --cream:#f3ead8; --mist:#cfe0d3; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:#333; display:flex; flex-direction:column; gap:40px; padding:40px; font-family:"Inter",sans-serif; }
+  .board { position:relative; overflow:hidden; color:#fff; flex:none; width:1080px; height:1080px;
+    background:
+      radial-gradient(1400px 900px at 88% -12%, rgba(44,154,70,0.55) 0%, transparent 55%),
+      radial-gradient(1000px 700px at -10% 110%, rgba(242,169,30,0.16) 0%, transparent 55%),
+      linear-gradient(158deg, var(--g700) 0%, var(--g800) 48%, var(--g900) 100%); }
+  .board::before { content:""; position:absolute; inset:0;
+    background:repeating-linear-gradient(115deg, rgba(255,255,255,0.045) 0px, rgba(255,255,255,0.045) 1.5px, transparent 1.5px, transparent 90px); pointer-events:none; }
+  .ribbon { position:absolute; left:0; right:0; top:0; background:var(--amber); color:var(--g900);
+    font-family:"Archivo"; font-weight:800; text-transform:uppercase; white-space:nowrap; overflow:hidden; z-index:3;
+    font-size:21px; padding:13px 0; letter-spacing:0.12em; }
+  .inner { position:absolute; inset:47px 0 0 0; padding:56px 72px 54px; display:flex; flex-direction:column; }
+  .lockup { display:flex; align-items:center; gap:18px; }
+  .lockup .name { font-family:"Archivo"; font-weight:800; font-size:36px; }
+  .lockup .name span { color:var(--amber); }
+  .lockup .sub { font-weight:600; font-size:13px; margin-top:3px; letter-spacing:0.34em; text-transform:uppercase; color:var(--mist); }
+  .flag { display:inline-flex; align-items:center; gap:12px; margin-top:48px; width:fit-content;
+    background:rgba(242,169,30,0.14); border:2px solid var(--amber); border-radius:999px; padding:12px 26px;
+    font-family:"Archivo"; font-weight:800; font-size:19px; letter-spacing:0.1em; text-transform:uppercase; color:var(--amber); }
+  .flag::before { content:"WHO ATTENDS"; color:var(--mist); font-size:14px; letter-spacing:0.2em; }
+  .headline { font-family:"Archivo"; font-weight:800; text-transform:uppercase; line-height:1.0; margin-top:26px; font-size:88px; }
+  .headline .amber { color:var(--amber); }
+  .kicker { font-weight:400; color:var(--mist); font-size:28px; line-height:1.5; margin-top:30px; max-width:900px; }
+  .kicker b { color:var(--amber); font-weight:600; }
+  .list { display:grid; grid-template-columns:1fr; gap:21px; margin-top:38px; }
+  .item { display:flex; align-items:flex-start; gap:16px; font-weight:600; font-size:26px; color:var(--cream); line-height:1.35; }
+  .item::before { content:"✓"; color:var(--amber); font-weight:800; font-size:28px; flex:none; line-height:1.2; }
+  .footline { margin-top:auto; display:flex; align-items:center; justify-content:space-between; }
+  .cta { background:var(--amber); color:var(--g900); font-family:"Archivo"; font-weight:800; text-transform:uppercase;
+    border-radius:999px; font-size:26px; padding:21px 40px; }
+  .url { font-weight:600; color:var(--cream); font-size:20px; }
+</style></head><body><svg width="0" height="0" style="position:absolute"><defs><g id="wheat">
+<line x1="50" y1="10" x2="50" y2="96" stroke="#f2a91e" stroke-width="5" stroke-linecap="round"/>
+<ellipse cx="36" cy="26" rx="8" ry="15" fill="#f2a91e" transform="rotate(-32 36 26)"/>
+<ellipse cx="64" cy="26" rx="8" ry="15" fill="#f2a91e" transform="rotate(32 64 26)"/>
+<ellipse cx="33" cy="48" rx="8" ry="15" fill="#f2a91e" transform="rotate(-32 33 48)"/>
+<ellipse cx="67" cy="48" rx="8" ry="15" fill="#f2a91e" transform="rotate(32 67 48)"/>
+<ellipse cx="35" cy="70" rx="8" ry="15" fill="#cfe0d3" transform="rotate(-32 35 70)"/>
+<ellipse cx="65" cy="70" rx="8" ry="15" fill="#cfe0d3" transform="rotate(32 65 70)"/>
+<ellipse cx="50" cy="12" rx="8" ry="15" fill="#f2a91e"/></g></defs></svg>
+<div class="board" id="corporates">
+  <div class="ribbon">&nbsp;• AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE, ENUGU • REGISTER FREE • AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE</div>
+  <div class="inner">
+    <div class="lockup"><svg width="64" height="64" viewBox="0 0 100 100"><use href="#wheat"/></svg>
+      <div><div class="name">AGIX <span>AFRICA</span></div><div class="sub">Africa Growth Industries Exchange</div></div></div>
+    <div class="flag">Agribusiness Corporates</div>
+    <div class="headline">Scale What<br/>You've <span class="amber">Built</span></div>
+    <div class="kicker">For the people leading <b>food production, processing, distribution and large-scale agribusiness operations</b> across Africa.</div>
+    <div class="list"><div class="item">Meet suppliers &amp; distribution partners across 12 sectors</div><div class="item">Engage government, finance &amp; technology in one room</div><div class="item">First-mover access to the South-East produce belt</div></div>
+    <div class="footline"><div class="cta">Register Free →</div><div class="url">agribizagritechexpo.agixafrica.com</div></div>
+  </div>
+</div>
+
+<div class="board" id="agritech">
+  <div class="ribbon">&nbsp;• AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE, ENUGU • REGISTER FREE • AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE</div>
+  <div class="inner">
+    <div class="lockup"><svg width="64" height="64" viewBox="0 0 100 100"><use href="#wheat"/></svg>
+      <div><div class="name">AGIX <span>AFRICA</span></div><div class="sub">Africa Growth Industries Exchange</div></div></div>
+    <div class="flag">Agritech Innovators</div>
+    <div class="headline">Demo Where<br/>Deals <span class="amber">Move</span></div>
+    <div class="kicker">For <b>founders and builders</b> bringing digital agriculture, automation, sensors, AI and precision farming tools to market.</div>
+    <div class="list"><div class="item">Showcase live to commercial farmers &amp; corporates</div><div class="item">Pitch VCs, DFIs &amp; agritech investors face-to-face</div><div class="item">Land pilots with states, estates &amp; cooperatives</div></div>
+    <div class="footline"><div class="cta">Book a Stand →</div><div class="url">hello@agixafrica.com</div></div>
+  </div>
+</div>
+
+<div class="board" id="farmers">
+  <div class="ribbon">&nbsp;• AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE, ENUGU • REGISTER FREE • AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE</div>
+  <div class="inner">
+    <div class="lockup"><svg width="64" height="64" viewBox="0 0 100 100"><use href="#wheat"/></svg>
+      <div><div class="name">AGIX <span>AFRICA</span></div><div class="sub">Africa Growth Industries Exchange</div></div></div>
+    <div class="flag">Farmers &amp; Producer Cooperatives</div>
+    <div class="headline">Sell Beyond<br/>Your <span class="amber">Gate</span></div>
+    <div class="kicker">For <b>large-scale growers, organised cooperatives, outgrower networks and commodity groups</b> seeking new technologies and markets.</div>
+    <div class="list"><div class="item">Meet buyers, processors &amp; off-takers directly</div><div class="item">Access farm finance, insurance &amp; grants</div><div class="item">Compare equipment, inputs &amp; climate-smart tools</div></div>
+    <div class="footline"><div class="cta">Register Free →</div><div class="url">agribizagritechexpo.agixafrica.com</div></div>
+  </div>
+</div>
+
+<div class="board" id="investors">
+  <div class="ribbon">&nbsp;• AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE, ENUGU • REGISTER FREE • AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE</div>
+  <div class="inner">
+    <div class="lockup"><svg width="64" height="64" viewBox="0 0 100 100"><use href="#wheat"/></svg>
+      <div><div class="name">AGIX <span>AFRICA</span></div><div class="sub">Africa Growth Industries Exchange</div></div></div>
+    <div class="flag">Investors &amp; Financial Institutions</div>
+    <div class="headline">Deal-Flow, Not<br/><span class="amber">Slide Decks</span></div>
+    <div class="kicker">For <b>private equity, venture capital, DFIs, banks and funding platforms</b> looking for scalable agribusiness opportunities.</div>
+    <div class="list"><div class="item">Meet bankable projects &amp; investment-ready SMEs</div><div class="item">Deal-room access &amp; investment forum roles</div><div class="item">Direct policy engagement with government</div></div>
+    <div class="footline"><div class="cta">Register Free →</div><div class="url">agribizagritechexpo.agixafrica.com</div></div>
+  </div>
+</div>
+
+<div class="board" id="government">
+  <div class="ribbon">&nbsp;• AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE, ENUGU • REGISTER FREE • AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE</div>
+  <div class="inner">
+    <div class="lockup"><svg width="64" height="64" viewBox="0 0 100 100"><use href="#wheat"/></svg>
+      <div><div class="name">AGIX <span>AFRICA</span></div><div class="sub">Africa Growth Industries Exchange</div></div></div>
+    <div class="flag">Government Ministries &amp; Agencies</div>
+    <div class="headline">Policy Meets<br/><span class="amber">Practice</span></div>
+    <div class="kicker">For officials from <b>agriculture, trade, investment, rural development, export promotion and regulatory bodies</b>.</div>
+    <div class="list"><div class="item">Present programmes to investors &amp; operators</div><div class="item">Structured dialogue with the private sector</div><div class="item">Showcase your state or agency in a hosted pavilion</div></div>
+    <div class="footline"><div class="cta">Register Free →</div><div class="url">agribizagritechexpo.agixafrica.com</div></div>
+  </div>
+</div>
+
+<div class="board" id="manufacturers">
+  <div class="ribbon">&nbsp;• AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE, ENUGU • REGISTER FREE • AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE</div>
+  <div class="inner">
+    <div class="lockup"><svg width="64" height="64" viewBox="0 0 100 100"><use href="#wheat"/></svg>
+      <div><div class="name">AGIX <span>AFRICA</span></div><div class="sub">Africa Growth Industries Exchange</div></div></div>
+    <div class="flag">Food &amp; Beverage Manufacturers</div>
+    <div class="headline">Source at<br/>the <span class="amber">Source</span></div>
+    <div class="kicker">For <b>processors in dairy, beverages, grains, oils, snacks and packaged foods</b> searching for suppliers and equipment.</div>
+    <div class="list"><div class="item">Find reliable commodity suppliers &amp; cooperatives</div><div class="item">Compare processing &amp; packaging equipment live</div><div class="item">Negotiate long-term supply agreements</div></div>
+    <div class="footline"><div class="cta">Register Free →</div><div class="url">agribizagritechexpo.agixafrica.com</div></div>
+  </div>
+</div>
+
+<div class="board" id="inputs">
+  <div class="ribbon">&nbsp;• AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE, ENUGU • REGISTER FREE • AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE</div>
+  <div class="inner">
+    <div class="lockup"><svg width="64" height="64" viewBox="0 0 100 100"><use href="#wheat"/></svg>
+      <div><div class="name">AGIX <span>AFRICA</span></div><div class="sub">Africa Growth Industries Exchange</div></div></div>
+    <div class="flag">Input Suppliers</div>
+    <div class="headline">Reach the Farmers<br/>Who <span class="amber">Buy</span></div>
+    <div class="kicker">For <b>seed companies, fertilizer producers, crop protection firms and irrigation manufacturers</b>.</div>
+    <div class="list"><div class="item">3,000+ participants including farmers &amp; cooperatives</div><div class="item">Launch products to a ready, high-intent market</div><div class="item">Sign distributors across the region</div></div>
+    <div class="footline"><div class="cta">Book a Stand →</div><div class="url">hello@agixafrica.com</div></div>
+  </div>
+</div>
+
+<div class="board" id="logistics">
+  <div class="ribbon">&nbsp;• AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE, ENUGU • REGISTER FREE • AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE</div>
+  <div class="inner">
+    <div class="lockup"><svg width="64" height="64" viewBox="0 0 100 100"><use href="#wheat"/></svg>
+      <div><div class="name">AGIX <span>AFRICA</span></div><div class="sub">Africa Growth Industries Exchange</div></div></div>
+    <div class="flag">Logistics &amp; Supply Chain Providers</div>
+    <div class="headline">Move What<br/>Africa <span class="amber">Grows</span></div>
+    <div class="kicker">For <b>cold chain operators, freight companies, storage solution providers and export logistics partners</b>.</div>
+    <div class="list"><div class="item">Meet processors &amp; exporters who need capacity</div><div class="item">Showcase cold-chain, storage &amp; handling solutions</div><div class="item">Plug into corridor &amp; export opportunities</div></div>
+    <div class="footline"><div class="cta">Book a Stand →</div><div class="url">hello@agixafrica.com</div></div>
+  </div>
+</div>
+
+<div class="board" id="development">
+  <div class="ribbon">&nbsp;• AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE, ENUGU • REGISTER FREE • AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE</div>
+  <div class="inner">
+    <div class="lockup"><svg width="64" height="64" viewBox="0 0 100 100"><use href="#wheat"/></svg>
+      <div><div class="name">AGIX <span>AFRICA</span></div><div class="sub">Africa Growth Industries Exchange</div></div></div>
+    <div class="flag">Development Partners &amp; NGOs</div>
+    <div class="headline">Impact at<br/><span class="amber">Scale</span></div>
+    <div class="kicker">For organisations supporting <b>food systems transformation, sustainability, youth programmes and agricultural innovation</b>.</div>
+    <div class="list"><div class="item">Partner with federal &amp; state programmes</div><div class="item">Reach farmers &amp; cooperatives directly</div><div class="item">Co-host knowledge sessions &amp; policy dialogues</div></div>
+    <div class="footline"><div class="cta">Register Free →</div><div class="url">agribizagritechexpo.agixafrica.com</div></div>
+  </div>
+</div>
+
+<div class="board" id="academia">
+  <div class="ribbon">&nbsp;• AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE, ENUGU • REGISTER FREE • AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE</div>
+  <div class="inner">
+    <div class="lockup"><svg width="64" height="64" viewBox="0 0 100 100"><use href="#wheat"/></svg>
+      <div><div class="name">AGIX <span>AFRICA</span></div><div class="sub">Africa Growth Industries Exchange</div></div></div>
+    <div class="flag">Academia &amp; Research Institutes</div>
+    <div class="headline">Science, Meet<br/><span class="amber">Industry</span></div>
+    <div class="kicker">For <b>universities, think tanks and agricultural research centres</b> connecting science with industry.</div>
+    <div class="list"><div class="item">Put research in front of commercial partners</div><div class="item">Present at knowledge &amp; innovation sessions</div><div class="item">Build collaborations, pilots &amp; funding links</div></div>
+    <div class="footline"><div class="cta">Register Free →</div><div class="url">agribizagritechexpo.agixafrica.com</div></div>
+  </div>
+</div>
+
+<div class="board" id="retailers">
+  <div class="ribbon">&nbsp;• AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE, ENUGU • REGISTER FREE • AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE</div>
+  <div class="inner">
+    <div class="lockup"><svg width="64" height="64" viewBox="0 0 100 100"><use href="#wheat"/></svg>
+      <div><div class="name">AGIX <span>AFRICA</span></div><div class="sub">Africa Growth Industries Exchange</div></div></div>
+    <div class="flag">Retailers &amp; Distributors</div>
+    <div class="headline">Fill Your Shelves<br/><span class="amber">Smarter</span></div>
+    <div class="kicker">For <b>supermarkets, wholesalers and distribution chains</b> exploring new supply partnerships across Africa.</div>
+    <div class="list"><div class="item">Source produce &amp; packaged foods at origin</div><div class="item">Meet processors, exporters &amp; cooperatives</div><div class="item">Build regional supply partnerships that last</div></div>
+    <div class="footline"><div class="cta">Register Free →</div><div class="url">agribizagritechexpo.agixafrica.com</div></div>
+  </div>
+</div>
+
+<div class="board" id="machinery">
+  <div class="ribbon">&nbsp;• AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE, ENUGU • REGISTER FREE • AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE</div>
+  <div class="inner">
+    <div class="lockup"><svg width="64" height="64" viewBox="0 0 100 100"><use href="#wheat"/></svg>
+      <div><div class="name">AGIX <span>AFRICA</span></div><div class="sub">Africa Growth Industries Exchange</div></div></div>
+    <div class="flag">Equipment &amp; Machinery Providers</div>
+    <div class="headline">Put Machines<br/>in the <span class="amber">Field</span></div>
+    <div class="kicker">For suppliers of <b>tractors, harvesters, processing equipment and agricultural machinery</b>.</div>
+    <div class="list"><div class="item">Live demos — including outdoor demonstration space</div><div class="item">Meet commercial farmers, estates &amp; cooperatives</div><div class="item">Mechanisation deals with states &amp; programmes</div></div>
+    <div class="footline"><div class="cta">Book a Stand →</div><div class="url">hello@agixafrica.com</div></div>
+  </div>
+</div></body></html>
