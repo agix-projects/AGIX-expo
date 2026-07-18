@@ -1,0 +1,212 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet" /><style>
+  :root { --g900:#0d2a14; --g800:#123b1d; --g700:#1a5227; --g600:#2c9a46; --amber:#f2a91e; --cream:#f3ead8; --mist:#cfe0d3; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:#333; display:flex; flex-direction:column; gap:40px; padding:40px; font-family:"Inter",sans-serif; }
+  .board { position:relative; overflow:hidden; color:#fff; flex:none; width:1080px; height:1080px;
+    background:
+      radial-gradient(1400px 900px at 88% -12%, rgba(44,154,70,0.55) 0%, transparent 55%),
+      radial-gradient(1000px 700px at -10% 110%, rgba(242,169,30,0.16) 0%, transparent 55%),
+      linear-gradient(158deg, var(--g700) 0%, var(--g800) 48%, var(--g900) 100%); }
+  .board::before { content:""; position:absolute; inset:0;
+    background:repeating-linear-gradient(115deg, rgba(255,255,255,0.045) 0px, rgba(255,255,255,0.045) 1.5px, transparent 1.5px, transparent 90px); pointer-events:none; }
+  .ribbon { position:absolute; left:0; right:0; top:0; background:var(--amber); color:var(--g900);
+    font-family:"Archivo"; font-weight:800; text-transform:uppercase; white-space:nowrap; overflow:hidden; z-index:3;
+    font-size:21px; padding:13px 0; letter-spacing:0.12em; }
+  .inner { position:absolute; inset:47px 0 0 0; padding:56px 72px 54px; display:flex; flex-direction:column; }
+  .lockup { display:flex; align-items:center; gap:18px; }
+  .lockup .name { font-family:"Archivo"; font-weight:800; font-size:36px; }
+  .lockup .name span { color:var(--amber); }
+  .lockup .sub { font-weight:600; font-size:13px; margin-top:3px; letter-spacing:0.34em; text-transform:uppercase; color:var(--mist); }
+  .flag { display:inline-flex; align-items:center; margin-top:48px; width:fit-content;
+    background:rgba(242,169,30,0.14); border:2px solid var(--amber); border-radius:999px; padding:12px 26px;
+    font-family:"Archivo"; font-weight:800; font-size:20px; letter-spacing:0.12em; text-transform:uppercase; color:var(--amber); }
+  .headline { font-family:"Archivo"; font-weight:800; text-transform:uppercase; line-height:1.0; margin-top:26px; font-size:86px; }
+  .headline .amber { color:var(--amber); }
+  .kicker { font-weight:400; color:var(--mist); font-size:28px; line-height:1.5; margin-top:30px; max-width:900px; }
+  .kicker b { color:var(--amber); font-weight:600; }
+  .list { display:grid; grid-template-columns:1fr; gap:21px; margin-top:36px; }
+  .item { display:flex; align-items:flex-start; gap:16px; font-weight:600; font-size:26px; color:var(--cream); line-height:1.35; }
+  .item::before { content:"✓"; color:var(--amber); font-weight:800; font-size:28px; flex:none; line-height:1.2; }
+  .chips { display:flex; flex-wrap:wrap; gap:14px; margin-top:38px; max-width:940px; }
+  .chipbox { border:2px solid rgba(243,234,216,0.4); background:rgba(13,42,20,0.55);
+    font-family:"Archivo"; font-weight:800; font-size:20px; letter-spacing:0.06em; padding:13px 24px; text-transform:uppercase; }
+  .footline { margin-top:auto; display:flex; align-items:center; justify-content:space-between; }
+  .cta { background:var(--amber); color:var(--g900); font-family:"Archivo"; font-weight:800; text-transform:uppercase;
+    border-radius:999px; font-size:26px; padding:21px 40px; }
+  .url { font-weight:600; color:var(--cream); font-size:20px; }
+</style></head><body><svg width="0" height="0" style="position:absolute"><defs><g id="wheat">
+<line x1="50" y1="10" x2="50" y2="96" stroke="#f2a91e" stroke-width="5" stroke-linecap="round"/>
+<ellipse cx="36" cy="26" rx="8" ry="15" fill="#f2a91e" transform="rotate(-32 36 26)"/>
+<ellipse cx="64" cy="26" rx="8" ry="15" fill="#f2a91e" transform="rotate(32 64 26)"/>
+<ellipse cx="33" cy="48" rx="8" ry="15" fill="#f2a91e" transform="rotate(-32 33 48)"/>
+<ellipse cx="67" cy="48" rx="8" ry="15" fill="#f2a91e" transform="rotate(32 67 48)"/>
+<ellipse cx="35" cy="70" rx="8" ry="15" fill="#cfe0d3" transform="rotate(-32 35 70)"/>
+<ellipse cx="65" cy="70" rx="8" ry="15" fill="#cfe0d3" transform="rotate(32 65 70)"/>
+<ellipse cx="50" cy="12" rx="8" ry="15" fill="#f2a91e"/></g></defs></svg>
+<div class="board" id="women">
+  <div class="ribbon">&nbsp;• AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE, ENUGU • LEAD PARTNER: FEDERAL MINISTRY OF AGRICULTURE AND FOOD SECURITY • AGIX EXPO 2027 • 9–10 APRIL</div>
+  <div class="inner">
+    <div class="lockup"><svg width="64" height="64" viewBox="0 0 100 100"><use href="#wheat"/></svg>
+      <div><div class="name">AGIX <span>AFRICA</span></div><div class="sub">Africa Growth Industries Exchange</div></div></div>
+    <div class="flag">Expo Programme</div>
+    <div class="headline">Women in<br/><span class="amber">Agribusiness</span></div>
+    <div class="kicker">A dedicated programme for <b>women entrepreneurs and women-led agribusinesses</b> — visibility, finance and networks to grow across Africa's agrifood value chains.</div>
+    <div class="list"><div class="item">Dedicated programme sessions &amp; showcase visibility</div><div class="item">Meet financiers backing women-led enterprises</div><div class="item">Buyer introductions &amp; mentorship networks</div></div>
+    
+    <div class="footline"><div class="cta">Register Free →</div><div class="url">agribizagritechexpo.agixafrica.com</div></div>
+  </div>
+</div>
+
+<div class="board" id="youth">
+  <div class="ribbon">&nbsp;• AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE, ENUGU • LEAD PARTNER: FEDERAL MINISTRY OF AGRICULTURE AND FOOD SECURITY • AGIX EXPO 2027 • 9–10 APRIL</div>
+  <div class="inner">
+    <div class="lockup"><svg width="64" height="64" viewBox="0 0 100 100"><use href="#wheat"/></svg>
+      <div><div class="name">AGIX <span>AFRICA</span></div><div class="sub">Africa Growth Industries Exchange</div></div></div>
+    <div class="flag">Expo Programme</div>
+    <div class="headline">Youth<br/><span class="amber">Agripreneur</span></div>
+    <div class="kicker">For <b>youth-led enterprises, startups and emerging agripreneurs</b> — because the future of African agriculture farms young.</div>
+    <div class="list"><div class="item">Showcase your venture to investors &amp; corporates</div><div class="item">Training, mentorship &amp; enterprise support</div><div class="item">Connect with programmes backing young founders</div></div>
+    
+    <div class="footline"><div class="cta">Register Free →</div><div class="url">agribizagritechexpo.agixafrica.com</div></div>
+  </div>
+</div>
+
+<div class="board" id="export">
+  <div class="ribbon">&nbsp;• AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE, ENUGU • LEAD PARTNER: FEDERAL MINISTRY OF AGRICULTURE AND FOOD SECURITY • AGIX EXPO 2027 • 9–10 APRIL</div>
+  <div class="inner">
+    <div class="lockup"><svg width="64" height="64" viewBox="0 0 100 100"><use href="#wheat"/></svg>
+      <div><div class="name">AGIX <span>AFRICA</span></div><div class="sub">Africa Growth Industries Exchange</div></div></div>
+    <div class="flag">Export Readiness Centre</div>
+    <div class="headline">Get<br/><span class="amber">Export-Ready</span></div>
+    <div class="kicker">Hands-on support for <b>export-ready and export-potential businesses</b> at the Export Readiness Centre:</div>
+    <div class="list"><div class="item">Packaging, labelling, standards &amp; certification</div><div class="item">Export documentation &amp; trade finance</div><div class="item">Buyer due diligence &amp; distributor engagement</div><div class="item">Product visibility &amp; post-Expo market support</div></div>
+    
+    <div class="footline"><div class="cta">Register Free →</div><div class="url">agribizagritechexpo.agixafrica.com</div></div>
+  </div>
+</div>
+
+<div class="board" id="afcfta">
+  <div class="ribbon">&nbsp;• AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE, ENUGU • LEAD PARTNER: FEDERAL MINISTRY OF AGRICULTURE AND FOOD SECURITY • AGIX EXPO 2027 • 9–10 APRIL</div>
+  <div class="inner">
+    <div class="lockup"><svg width="64" height="64" viewBox="0 0 100 100"><use href="#wheat"/></svg>
+      <div><div class="name">AGIX <span>AFRICA</span></div><div class="sub">Africa Growth Industries Exchange</div></div></div>
+    <div class="flag">Regional Trade</div>
+    <div class="headline">One Continent.<br/>One <span class="amber">Market.</span></div>
+    <div class="kicker">The <b>AfCFTA</b> opens a continental market to African agribusinesses. AGIX 2027 is where South-East businesses meet the buyers, partners and trade institutions to claim it.</div>
+    <div class="list"><div class="item">AfCFTA opportunity sessions &amp; guidance</div><div class="item">Meet international trade &amp; business delegations</div><div class="item">Cross-border partnerships &amp; market access</div></div>
+    
+    <div class="footline"><div class="cta">Register Free →</div><div class="url">agribizagritechexpo.agixafrica.com</div></div>
+  </div>
+</div>
+
+<div class="board" id="sme">
+  <div class="ribbon">&nbsp;• AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE, ENUGU • LEAD PARTNER: FEDERAL MINISTRY OF AGRICULTURE AND FOOD SECURITY • AGIX EXPO 2027 • 9–10 APRIL</div>
+  <div class="inner">
+    <div class="lockup"><svg width="64" height="64" viewBox="0 0 100 100"><use href="#wheat"/></svg>
+      <div><div class="name">AGIX <span>AFRICA</span></div><div class="sub">Africa Growth Industries Exchange</div></div></div>
+    <div class="flag">SME Pavilion</div>
+    <div class="headline">Small Business.<br/><span class="amber">Big Stage.</span></div>
+    <div class="kicker">The <b>SME Pavilion</b> gives small businesses and startups an affordable, high-visibility home on the expo floor.</div>
+    <div class="list"><div class="item">Group exhibition space at SME-friendly rates</div><div class="item">Curated introductions to buyers &amp; financiers</div><div class="item">Feature in SME &amp; startup showcase sessions</div></div>
+    
+    <div class="footline"><div class="cta">Book a Stand →</div><div class="url">hello@agixafrica.com</div></div>
+  </div>
+</div>
+
+<div class="board" id="buyers-lounge">
+  <div class="ribbon">&nbsp;• AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE, ENUGU • LEAD PARTNER: FEDERAL MINISTRY OF AGRICULTURE AND FOOD SECURITY • AGIX EXPO 2027 • 9–10 APRIL</div>
+  <div class="inner">
+    <div class="lockup"><svg width="64" height="64" viewBox="0 0 100 100"><use href="#wheat"/></svg>
+      <div><div class="name">AGIX <span>AFRICA</span></div><div class="sub">Africa Growth Industries Exchange</div></div></div>
+    <div class="flag">Buyers' &amp; Distributors' Lounge</div>
+    <div class="headline">Where Buyers<br/>Come to <span class="amber">Source</span></div>
+    <div class="kicker">A dedicated lounge for <b>processors, supermarkets, exporters, distributors and commodity buyers</b> — private meeting space, curated supplier introductions and product sampling.</div>
+    <div class="list"><div class="item">Hosted-buyer programme &amp; private meetings</div><div class="item">Curated supplier shortlists by sector</div><div class="item">Product sampling &amp; quotation requests on the spot</div></div>
+    
+    <div class="footline"><div class="cta">Register Free →</div><div class="url">agribizagritechexpo.agixafrica.com</div></div>
+  </div>
+</div>
+
+<div class="board" id="matchmaking">
+  <div class="ribbon">&nbsp;• AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE, ENUGU • LEAD PARTNER: FEDERAL MINISTRY OF AGRICULTURE AND FOOD SECURITY • AGIX EXPO 2027 • 9–10 APRIL</div>
+  <div class="inner">
+    <div class="lockup"><svg width="64" height="64" viewBox="0 0 100 100"><use href="#wheat"/></svg>
+      <div><div class="name">AGIX <span>AFRICA</span></div><div class="sub">Africa Growth Industries Exchange</div></div></div>
+    <div class="flag">B2B &amp; Investment Matchmaking</div>
+    <div class="headline">What You<br/><span class="amber">Leave With</span></div>
+    <div class="kicker">Structured matchmaking is the core of AGIX — designed so every participating business goes home with outcomes, not just brochures:</div>
+    <div class="list"><div class="item">Buyer &amp; distributor leads</div><div class="item">Quotation &amp; product-sample requests</div><div class="item">Finance applications &amp; investment discussions</div><div class="item">Supply &amp; distribution agreements</div><div class="item">Joint ventures, site visits &amp; partnerships</div></div>
+    
+    <div class="footline"><div class="cta">Register Free →</div><div class="url">agribizagritechexpo.agixafrica.com</div></div>
+  </div>
+</div>
+
+<div class="board" id="invest-enugu">
+  <div class="ribbon">&nbsp;• AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE, ENUGU • LEAD PARTNER: FEDERAL MINISTRY OF AGRICULTURE AND FOOD SECURITY • AGIX EXPO 2027 • 9–10 APRIL</div>
+  <div class="inner">
+    <div class="lockup"><svg width="64" height="64" viewBox="0 0 100 100"><use href="#wheat"/></svg>
+      <div><div class="name">AGIX <span>AFRICA</span></div><div class="sub">Africa Growth Industries Exchange</div></div></div>
+    <div class="flag">Invest in Enugu</div>
+    <div class="headline">A State Open<br/>for <span class="amber">Investment</span></div>
+    <div class="kicker">Enugu's investment opportunities go on show at AGIX 2027 — presented with project profiles, facilitation desks and investor meetings:</div>
+    
+    <div class="chips"><div class="chipbox">Commercial Agriculture</div><div class="chipbox">Farm Estates</div><div class="chipbox">Agro-Processing</div><div class="chipbox">Cold-Chain &amp; Warehousing</div><div class="chipbox">Irrigation &amp; Mechanisation</div><div class="chipbox">Renewable Energy</div><div class="chipbox">Packaging</div><div class="chipbox">Digital Agriculture</div><div class="chipbox">Export Infrastructure</div><div class="chipbox">Livestock &amp; Aquaculture</div></div>
+    <div class="footline"><div class="cta">Register Free →</div><div class="url">agribizagritechexpo.agixafrica.com</div></div>
+  </div>
+</div>
+
+<div class="board" id="buy-local">
+  <div class="ribbon">&nbsp;• AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE, ENUGU • LEAD PARTNER: FEDERAL MINISTRY OF AGRICULTURE AND FOOD SECURITY • AGIX EXPO 2027 • 9–10 APRIL</div>
+  <div class="inner">
+    <div class="lockup"><svg width="64" height="64" viewBox="0 0 100 100"><use href="#wheat"/></svg>
+      <div><div class="name">AGIX <span>AFRICA</span></div><div class="sub">Africa Growth Industries Exchange</div></div></div>
+    <div class="flag">Local Economic Impact</div>
+    <div class="headline">The Expo<br/>Buys <span class="amber">Local</span></div>
+    <div class="kicker">AGIX 2027 will create real business for <b>qualified Enugu-based providers</b>. Register your company for supplier opportunities in:</div>
+    
+    <div class="chips"><div class="chipbox">Hotels &amp; Hospitality</div><div class="chipbox">Transport</div><div class="chipbox">Catering</div><div class="chipbox">Printing &amp; Branding</div><div class="chipbox">Exhibition Construction</div><div class="chipbox">Logistics</div><div class="chipbox">Media &amp; AV</div><div class="chipbox">Security</div><div class="chipbox">Event Staffing</div><div class="chipbox">Professional Services</div></div>
+    <div class="footline"><div class="cta">Register Interest →</div><div class="url">hello@agixafrica.com</div></div>
+  </div>
+</div>
+
+<div class="board" id="host-chamber">
+  <div class="ribbon">&nbsp;• AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE, ENUGU • LEAD PARTNER: FEDERAL MINISTRY OF AGRICULTURE AND FOOD SECURITY • AGIX EXPO 2027 • 9–10 APRIL</div>
+  <div class="inner">
+    <div class="lockup"><svg width="64" height="64" viewBox="0 0 100 100"><use href="#wheat"/></svg>
+      <div><div class="name">AGIX <span>AFRICA</span></div><div class="sub">Africa Growth Industries Exchange</div></div></div>
+    <div class="flag">Institutional Partnership</div>
+    <div class="headline">Lead Your State's<br/><span class="amber">Business Community</span></div>
+    <div class="kicker">AGIX invites <b>chambers of commerce and business associations</b> to serve as host and mobilisation partners — bringing organised private-sector leadership to the expo.</div>
+    <div class="list"><div class="item">Host-chamber recognition &amp; forum leadership</div><div class="item">Mobilise members as exhibitors, delegates &amp; speakers</div><div class="item">A branded pavilion for your members</div><div class="item">Matchmaking &amp; export support for member businesses</div></div>
+    
+    <div class="footline"><div class="cta">Partner With AGIX →</div><div class="url">hello@agixafrica.com</div></div>
+  </div>
+</div>
+
+<div class="board" id="draft-eccima">
+  <div class="ribbon">&nbsp;• AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE, ENUGU • LEAD PARTNER: FEDERAL MINISTRY OF AGRICULTURE AND FOOD SECURITY • AGIX EXPO 2027 • 9–10 APRIL</div>
+  <div class="inner">
+    <div class="lockup"><svg width="64" height="64" viewBox="0 0 100 100"><use href="#wheat"/></svg>
+      <div><div class="name">AGIX <span>AFRICA</span></div><div class="sub">Africa Growth Industries Exchange</div></div></div>
+    <div class="flag">State Host Chamber</div>
+    <div class="headline">ECCIMA Joins<br/>as <span class="amber">State Host Chamber</span></div>
+    <div class="kicker">The <b>Enugu Chamber of Commerce, Industry, Mines and Agriculture</b> — State Host Chamber and Strategic Business Mobilisation Partner of AGIX Agribusiness &amp; Agritech Expo 2027.</div>
+    <div class="list"><div class="item">Organised private-sector leadership for the host state</div><div class="item">Mobilising Enugu's businesses, exporters &amp; SMEs</div><div class="item">Anchoring the host-state pavilion &amp; investment forum</div></div>
+    
+    <div class="footline"><div class="cta">Register Free →</div><div class="url">agribizagritechexpo.agixafrica.com</div></div>
+  </div>
+</div>
+
+<div class="board" id="draft-enugu-pavilion">
+  <div class="ribbon">&nbsp;• AGIX AGRIBUSINESS &amp; AGRITECH EXPO 2027 • 9–10 APRIL • AMADEO EVENT CENTRE, ENUGU • LEAD PARTNER: FEDERAL MINISTRY OF AGRICULTURE AND FOOD SECURITY • AGIX EXPO 2027 • 9–10 APRIL</div>
+  <div class="inner">
+    <div class="lockup"><svg width="64" height="64" viewBox="0 0 100 100"><use href="#wheat"/></svg>
+      <div><div class="name">AGIX <span>AFRICA</span></div><div class="sub">Africa Growth Industries Exchange</div></div></div>
+    <div class="flag">Host State Pavilion</div>
+    <div class="headline">The Enugu State<br/><span class="amber">Investment Pavilion</span></div>
+    <div class="kicker">The <b>Enugu State Agribusiness, Enterprise and Investment Pavilion</b> — jointly presented by ECCIMA, the Enugu State Government and AGIX Africa.</div>
+    
+    <div class="chips"><div class="chipbox">State Investment Promotion</div><div class="chipbox">Agriculture &amp; Agro-Industry</div><div class="chipbox">Manufacturing &amp; Processing</div><div class="chipbox">SMEs &amp; Startups</div><div class="chipbox">Export-Ready Businesses</div><div class="chipbox">Technology &amp; Innovation</div><div class="chipbox">Finance &amp; Professional Services</div></div>
+    <div class="footline"><div class="cta">Visit the Pavilion →</div><div class="url">agribizagritechexpo.agixafrica.com</div></div>
+  </div>
+</div></body></html>
